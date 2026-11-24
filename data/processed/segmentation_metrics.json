@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "title": "Phase 4 Customer Segmentation Quantitative Metrics",
+    "algorithm": "K-Means Clustering",
+    "snapshot_date": "2025-12-31",
+    "total_customers": 7000,
+    "selected_k": 5
+  },
+  "raw_data_hashes": {
+    "customers_csv": {
+      "md5": "EA39F916F2FA2D432F40F894F63A1715",
+      "sha256": "DF6219AA4E2BDDE8FFF419272B9F2C1DE0602473248619E90566BC7D498AB70E"
+    },
+    "orders_csv": {
+      "md5": "7E65B96077288D3DBDA3E50FAF6FD5EB",
+      "sha256": "AB632B3092F732B3B25BAAD096B191C1ACA777CB8D42B29EABB815A266C558E7"
+    }
+  },
+  "monetary_transformation_audit": {
+    "raw_all_7000": {
+      "mean": 39926.45082428571,
+      "median": 18103.684999999998,
+      "std": 56851.60261927551,
+      "skewness": 2.462076981764131,
+      "percentiles": [
+        0.0,
+        0.0,
+        3051.4725,
+        18103.684999999998,
+        51767.25,
+        165179.45599999995,
+        266582.35560000007,
+        479694.01
+      ]
+    },
+    "raw_active_6516": {
+      "mean": 42892.13563075506,
+      "median": 21732.309999999998,
+      "std": 57835.92328900855,
+      "skewness": 2.3827108587332164,
+      "percentiles": [
+        150.86,
+        346.54150000000004,
+        4459.5175,
+        21732.309999999998,
+        55669.924999999996,
+        170690.84000000003,
+        270510.3375000004,
+        479694.01
+      ]
+    },
+    "log1p_all_7000": {
+      "mean": 8.996495190095942,
+      "median": 9.803925828241926,
+      "std": 2.925013348500623,
+      "skewness": -1.8688297437517207,
+      "percentiles": [
+        0.0,
+        0.0,
+        8.023705368653406,
+        9.803925828241926,
+        10.8545323028464,
+        12.014793819158553,
+        12.493442247073114,
+        13.080905785101258
+      ]
+    },
+    "log1p_active_6516": {
+      "mean": 9.664743144670288,
+      "median": 9.986601307698546,
+      "std": 1.652837247835209,
+      "skewness": -0.42301837573513223,
+      "percentiles": [
+        5.022959043785088,
+        5.850883993660891,
+        8.403019894836202,
+        9.986601307698546,
+        10.927212340488431,
+        12.047614827568337,
+        12.508068428402982,
+        13.080905785101258
+      ]
+    },
+    "zero_inflation_explanation": "The aggregate log1p monetary skewness of -1.8688 across all 7,000 customers is driven by the 484 zero-spend accounts sitting at log1p(0) = 0.0. For active customers with delivered purchases (N=6,516), log1p monetary skewness is -0.4230 (near-normal, between -0.5 and 0.5), demonstrating that the transformation does not overcorrect the active distribution."
+  },
+  "k3_vs_k5_comparison": {
+    "k3_evaluation": {
+      "inertia": 6544.500102433785,
+      "silhouette_score": 0.4412170744271915,
+      "cluster_sizes": {
+        "2": 3330,
+        "1": 3185,
+        "0": 485
+      },
+      "smallest_cluster_pct": 6.93,
+      "cluster_profiles": [
+        {
+          "cluster_id": 0,
+          "count": 485,
+          "pct": 6.93,
+          "mean_recency": 999.0,
+          "mean_frequency": 0.0,
+          "mean_monetary": 0.36,
+          "observed_churn_rate": 76.29
+        },
+        {
+          "cluster_id": 1,
+          "count": 3185,
+          "pct": 45.5,
+          "mean_recency": 28.6,
+          "mean_frequency": 17.1,
+          "mean_monetary": 77307.98,
+          "observed_churn_rate": 29.73
+        },
+        {
+          "cluster_id": 2,
+          "count": 3330,
+          "pct": 47.57,
+          "mean_recency": 171.8,
+          "mean_frequency": 2.4,
+          "mean_monetary": 9987.71,
+          "observed_churn_rate": 56.76
+        }
+      ]
+    },
+    "k5_evaluation": {
+      "inertia": 3534.687444897491,
+      "silhouette_score": 0.4065193112586823,
+      "cluster_sizes": {
+        "3": 2000,
+        "1": 1723,
+        "0": 1569,
+        "4": 1224,
+        "2": 484
+      },
+      "smallest_cluster_pct": 6.91
+    },
+    "decision_rationale": "Although K=3 achieves a higher mathematical silhouette score (0.4412 vs 0.4065), it causes severe commercial over-aggregation: it collapses Champions (INR 113k spend, 25 orders) and Steady Repeaters (INR 39k spend, 8.6 orders) into a single 45.5% cluster, and lumps hot Recent Low-Ticket trial buyers (recency 14.8 days) with cold Lapsed customers (recency 274.8 days) into a single 47.6% cluster. K=5 cuts within-cluster error (inertia) by 46.0% (from 6,544.5 to 3,534.7) and provides five distinct, actionable customer personas necessary for retention marketing."
+  },
+  "scaler_comparison": {
+    "standard_scaler_silhouette_k5": 0.4065193112586823,
+    "robust_scaler_silhouette_k5": 0.399018845012118,
+    "raw_robust_scaler_silhouette_k5": 0.5434059147752764,
+    "raw_robust_scaler_cluster_sizes": {
+      "0": 4177,
+      "4": 1263,
+      "1": 617,
+      "3": 556,
+      "2": 387
+    },
+    "inertia_comparability_note": "Inertia values from differently scaled feature spaces cannot be directly compared as absolute measures of quality, because feature scaling alters the underlying coordinate geometry and metric distance units.",
+    "selected_scaler": "StandardScaler",
+    "scaler_selection_reasoning": "StandardScaler on log1p features yields balanced, granular clusters (sizes: 2000, 1723, 1569, 1224, 484). In contrast, Raw + RobustScaler creates an uninformative giant cluster containing 4,177 customers (59.7% of base) due to extreme right-skewness pulling centroids toward outliers."
+  },
+  "zero_delivered_cohort_audit": {
+    "total_zero_delivered_count": 484,
+    "subgroup_never_purchased_count": 148,
+    "subgroup_attempted_unfulfilled_count": 336,
+    "attempted_orders_count": 368,
+    "attempted_orders_returned_count": 207,
+    "attempted_orders_cancelled_count": 161,
+    "pooled_order_level_return_rate_368": 0.5625,
+    "pooled_order_level_cancellation_rate_368": 0.4375,
+    "mean_customer_level_return_rate_336": 0.5645,
+    "mean_customer_level_cancellation_rate_336": 0.4355,
+    "undefined_rate_customer_count": 148,
+    "rate_reporting_distinction": "A. Pooled order-level rates across 368 attempted orders: 56.25% returned (207/368) and 43.75% cancelled (161/368). B. Mean customer-level rates across 336 attempting customers: 56.45% return rate and 43.55% cancellation rate. C. 148 customers have undefined return and cancellation rates (0/0 = NaN) because they had zero historical orders. Undefined rates are strictly excluded from customer-level averages rather than silently replaced with zero.",
+    "historical_unweighted_rate_note": "Previous unweighted average across all 484 including 148 zeroes was 39.19% ret and 30.23% canc.",
+    "imputed_recency_days": 1117.0
+  },
+  "elbow_and_silhouette_eval": {
+    "tested_k": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "inertias": [
+      10943.895716356661,
+      6544.500102433785,
+      4924.733156397223,
+      3534.687444897491,
+      2991.7658482554702,
+      2558.4068450878217,
+      2226.088021399095,
+      1962.248757347893,
+      1781.3907488680632
+    ],
+    "silhouette_scores": [
+      0.42134107822762806,
+      0.4412170744271915,
+      0.389812002101143,
+      0.4065193112586823,
+      0.39433214652408166,
+      0.37123062574413246,
+      0.372804362518571,
+      0.3737440701262388,
+      0.3705707870336113
+    ],
+    "optimal_k_selected": 5,
+    "final_inertia": 3534.687444897491,
+    "final_silhouette": 0.4065193112586823
+  },
+  "extended_rfm_investigation": {
+    "extended_features": [
+      "recency_delivered_days",
+      "hist_delivered_order_count",
+      "hist_delivered_order_value_inr",
+      "customer_tenure_days",
+      "hist_return_rate",
+      "hist_cancellation_rate",
+      "delivered_orders_last_90_days"
+    ],
+    "core_rfm_silhouette_k5": 0.4065193112586823,
+    "extended_rfm_silhouette_k5": 0.34215002294346425,
+    "extended_rfm_inertia_k5": 17380.964159468695,
+    "conclusion": "Core RFM is statistically superior; extended features dilute distance metric (0.4065 vs 0.3422)."
+  },
+  "stability_analysis": {
+    "test_seeds": [
+      42,
+      100,
+      2024,
+      7,
+      999
+    ],
+    "mean_pairwise_ari": 0.9930843840177879,
+    "min_pairwise_ari": 0.984589225375116,
+    "pairwise_ari_matrix": {
+      "seed_42_vs_seed_100": 0.9967092597463529,
+      "seed_42_vs_seed_2024": 0.9861191901538472,
+      "seed_42_vs_seed_7": 0.996296293341457,
+      "seed_42_vs_seed_999": 0.9984559750040037,
+      "seed_100_vs_seed_2024": 0.9887284514867706,
+      "seed_100_vs_seed_7": 0.9995854841900056,
+      "seed_100_vs_seed_999": 0.9958161841044187,
+      "seed_2024_vs_seed_7": 0.989139911941433,
+      "seed_2024_vs_seed_999": 0.984589225375116,
+      "seed_7_vs_seed_999": 0.9954038648344734
+    },
+    "verdict": "Highly stable across the tested random initializations."
+  }
+}

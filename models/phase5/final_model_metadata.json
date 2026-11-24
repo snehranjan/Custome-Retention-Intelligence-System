@@ -1,0 +1,121 @@
+{
+  "project_name": "Indian E-Commerce Customer Retention Intelligence System Using Machine Learning",
+  "milestone": "Phase 5 \u2014 Checkpoint 5: Final Model Refit, Untouched Test Evaluation & Explainability",
+  "model_identifier": "logistic_regression_config_b_tuned_refitted",
+  "algorithm": "Logistic Regression",
+  "feature_configuration": "Configuration B (36 Behavioral Features + Unsupervised RFM cluster_id)",
+  "feature_count": 37,
+  "ordered_features": [
+    "city",
+    "state",
+    "customer_tenure_days",
+    "has_historical_orders",
+    "recency_days",
+    "recency_delivered_days",
+    "has_delivered_order",
+    "hist_order_count",
+    "hist_delivered_order_count",
+    "hist_returned_order_count",
+    "hist_cancelled_order_count",
+    "hist_total_order_value_inr",
+    "hist_delivered_order_value_inr",
+    "hist_total_recorded_discount_inr",
+    "hist_average_order_value_inr",
+    "orders_last_30_days",
+    "orders_last_90_days",
+    "orders_last_180_days",
+    "delivered_orders_last_30_days",
+    "delivered_orders_last_90_days",
+    "delivered_orders_last_180_days",
+    "hist_return_rate",
+    "hist_cancellation_rate",
+    "hist_average_delivery_delay_days",
+    "hist_delivery_delay_missing_count",
+    "hist_delivery_delay_missing_rate",
+    "hist_average_discount_amount_inr",
+    "hist_discounted_order_count",
+    "hist_discount_missing_count",
+    "hist_discount_missing_rate",
+    "hist_payment_missing_count",
+    "hist_payment_missing_rate",
+    "hist_cod_order_count",
+    "hist_cod_usage_rate",
+    "hist_upi_order_count",
+    "hist_upi_usage_rate",
+    "cluster_id"
+  ],
+  "hyperparameters": {
+    "C": 0.01,
+    "penalty": "l2",
+    "class_weight": "balanced",
+    "solver": "lbfgs",
+    "max_iter": 2000,
+    "random_state": 42
+  },
+  "decision_threshold": 0.46,
+  "training_population": {
+    "source_files": [
+      "data/modeling/train.csv",
+      "data/modeling/validation.csv"
+    ],
+    "training_rows": 5950,
+    "train_partition_rows": 4900,
+    "validation_partition_rows": 1050,
+    "churn_count": 2726,
+    "retained_count": 3224,
+    "churn_rate_pct": 45.82
+  },
+  "test_population": {
+    "source_file": "data/modeling/test.csv",
+    "test_rows": 1050,
+    "churn_count": 481,
+    "retained_count": 569,
+    "churn_rate_pct": 45.81
+  },
+  "evaluation_timestamp": "2026-11-19",
+  "environment": {
+    "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "scikit_learn_version": "1.9.1",
+    "pandas_version": "3.1.1",
+    "numpy_version": "2.0.2"
+  },
+  "model_artifact": {
+    "relative_path": "models/phase5/final_churn_pipeline.joblib",
+    "file_size_bytes": 9658,
+    "sha256": "25B91797F8F36DB605BAB98B8568A5911847B8CCE77334A68AE4E3862CD3B35D"
+  },
+  "preprocessing_description": "ColumnTransformer with two branches: (1) Numerical (34 features): SimpleImputer(strategy='median', add_indicator=True) followed by StandardScaler(). (2) Categorical (3 features: city, state, cluster_id): SimpleImputer(strategy='most_frequent') followed by OneHotEncoder(handle_unknown='ignore', sparse_output=False). Remainder columns are dropped.",
+  "target_definition": {
+    "column_name": "churn",
+    "positive_class": 1,
+    "negative_class": 0,
+    "positive_meaning": "Customer churned: placed 0 orders in the target observation quarter (2026-01-01 to 2026-03-31)",
+    "negative_meaning": "Customer retained: placed >= 1 orders in the target observation quarter (2026-01-01 to 2026-03-31)"
+  },
+  "temporal_parameters": {
+    "snapshot_cutoff_date": "2025-12-31",
+    "target_observation_window": "2026-01-01 through 2026-03-31, inclusive",
+    "historical_observation_window": "All historical orders dated on or before 2025-12-31"
+  },
+  "test_evaluation_metrics": {
+    "accuracy": 0.6695,
+    "precision": 0.6151,
+    "recall": 0.7443,
+    "f1_score": 0.6736,
+    "roc_auc": 0.7491,
+    "average_precision": 0.7146,
+    "specificity": 0.6063,
+    "balanced_accuracy": 0.6753,
+    "false_positive_rate": 0.3937,
+    "false_negative_rate": 0.2557,
+    "brier_score_loss": 0.2038
+  },
+  "test_confusion_matrix": {
+    "true_positives": 358,
+    "false_positives": 224,
+    "true_negatives": 345,
+    "false_negatives": 123,
+    "total": 1050
+  },
+  "recall_constraint_satisfied": true
+}

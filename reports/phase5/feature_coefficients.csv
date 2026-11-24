@@ -1,0 +1,83 @@
+feature_name,clean_feature_name,feature_type,coefficient,absolute_coefficient,direction,odds_ratio
+num__recency_days,recency_days (Standardized),Numerical (Standardized),0.321764,0.321764,Positive,1.379559
+num__hist_average_delivery_delay_days,hist_average_delivery_delay_days (Standardized),Numerical (Standardized),0.301754,0.301754,Positive,1.352228
+num__hist_returned_order_count,hist_returned_order_count (Standardized),Numerical (Standardized),0.210889,0.210889,Positive,1.234775
+num__delivered_orders_last_180_days,delivered_orders_last_180_days (Standardized),Numerical (Standardized),-0.181707,0.181707,Negative,0.833846
+num__hist_delivered_order_count,hist_delivered_order_count (Standardized),Numerical (Standardized),-0.150006,0.150006,Negative,0.860703
+cat__city_Pune,city_Pune,Categorical (One-Hot),-0.14169,0.14169,Negative,0.86789
+num__missingindicator_hist_average_discount_amount_inr,missing_hist_average_discount_amount_inr [Missing Indicator],Missingness Indicator,0.131315,0.131315,Positive,1.140327
+cat__cluster_id_1,cluster_id_1,Categorical (One-Hot),0.13107,0.13107,Positive,1.140048
+num__orders_last_180_days,orders_last_180_days (Standardized),Numerical (Standardized),-0.128921,0.128921,Negative,0.879043
+num__hist_discount_missing_rate,hist_discount_missing_rate (Standardized),Numerical (Standardized),-0.118015,0.118015,Negative,0.888683
+num__hist_order_count,hist_order_count (Standardized),Numerical (Standardized),-0.113375,0.113375,Negative,0.892816
+num__missingindicator_recency_days,missing_recency_days [Missing Indicator],Missingness Indicator,0.109221,0.109221,Positive,1.115408
+num__has_historical_orders,has_historical_orders (Standardized),Numerical (Standardized),-0.109221,0.109221,Negative,0.896533
+num__hist_upi_order_count,hist_upi_order_count (Standardized),Numerical (Standardized),-0.105308,0.105308,Negative,0.900048
+cat__city_Mumbai,city_Mumbai,Categorical (One-Hot),0.101123,0.101123,Positive,1.106413
+cat__cluster_id_3,cluster_id_3,Categorical (One-Hot),-0.092763,0.092763,Negative,0.91141
+num__hist_discounted_order_count,hist_discounted_order_count (Standardized),Numerical (Standardized),-0.09091,0.09091,Negative,0.9131
+num__customer_tenure_days,customer_tenure_days (Standardized),Numerical (Standardized),0.087035,0.087035,Positive,1.090935
+cat__cluster_id_4,cluster_id_4,Categorical (One-Hot),-0.085548,0.085548,Negative,0.918009
+num__hist_cancelled_order_count,hist_cancelled_order_count (Standardized),Numerical (Standardized),0.075211,0.075211,Positive,1.078112
+cat__state_Delhi,state_Delhi,Categorical (One-Hot),-0.074289,0.074289,Negative,0.928403
+cat__city_Delhi,city_Delhi,Categorical (One-Hot),-0.074289,0.074289,Negative,0.928403
+num__hist_total_recorded_discount_inr,hist_total_recorded_discount_inr (Standardized),Numerical (Standardized),-0.069539,0.069539,Negative,0.932823
+num__hist_total_order_value_inr,hist_total_order_value_inr (Standardized),Numerical (Standardized),-0.068196,0.068196,Negative,0.934078
+num__delivered_orders_last_90_days,delivered_orders_last_90_days (Standardized),Numerical (Standardized),-0.065997,0.065997,Negative,0.936133
+num__hist_cod_order_count,hist_cod_order_count (Standardized),Numerical (Standardized),-0.064969,0.064969,Negative,0.937096
+cat__city_Bengaluru,city_Bengaluru,Categorical (One-Hot),0.063847,0.063847,Positive,1.065929
+cat__city_Bhopal,city_Bhopal,Categorical (One-Hot),-0.059206,0.059206,Negative,0.942512
+cat__city_Guwahati,city_Guwahati,Categorical (One-Hot),-0.05851,0.05851,Negative,0.943169
+cat__state_Assam,state_Assam,Categorical (One-Hot),-0.05851,0.05851,Negative,0.943169
+cat__city_Hyderabad,city_Hyderabad,Categorical (One-Hot),0.055864,0.055864,Positive,1.057454
+cat__state_Telangana,state_Telangana,Categorical (One-Hot),0.055864,0.055864,Positive,1.057454
+num__hist_payment_missing_rate,hist_payment_missing_rate (Standardized),Numerical (Standardized),0.054054,0.054054,Positive,1.055541
+cat__city_Lucknow,city_Lucknow,Categorical (One-Hot),-0.050175,0.050175,Negative,0.951063
+num__hist_average_order_value_inr,hist_average_order_value_inr (Standardized),Numerical (Standardized),0.04984,0.04984,Positive,1.051103
+num__recency_delivered_days,recency_delivered_days (Standardized),Numerical (Standardized),0.04549,0.04549,Positive,1.046541
+num__hist_return_rate,hist_return_rate (Standardized),Numerical (Standardized),-0.043994,0.043994,Negative,0.95696
+cat__city_Indore,city_Indore,Categorical (One-Hot),0.040778,0.040778,Positive,1.041621
+cat__state_Karnataka,state_Karnataka,Categorical (One-Hot),0.038651,0.038651,Positive,1.039408
+num__hist_delivered_order_value_inr,hist_delivered_order_value_inr (Standardized),Numerical (Standardized),-0.038078,0.038078,Negative,0.962638
+num__orders_last_90_days,orders_last_90_days (Standardized),Numerical (Standardized),-0.037445,0.037445,Negative,0.963247
+num__missingindicator_hist_average_delivery_delay_days,missing_hist_average_delivery_delay_days [Missing Indicator],Missingness Indicator,0.036249,0.036249,Positive,1.036914
+cat__state_West Bengal,state_West Bengal,Categorical (One-Hot),0.031839,0.031839,Positive,1.032352
+cat__city_Kolkata,city_Kolkata,Categorical (One-Hot),0.031839,0.031839,Positive,1.032352
+cat__state_Tamil Nadu,state_Tamil Nadu,Categorical (One-Hot),0.031215,0.031215,Positive,1.031707
+cat__cluster_id_0,cluster_id_0,Categorical (One-Hot),0.031086,0.031086,Positive,1.031575
+cat__state_Maharashtra,state_Maharashtra,Categorical (One-Hot),-0.029692,0.029692,Negative,0.970744
+cat__city_Surat,city_Surat,Categorical (One-Hot),0.028047,0.028047,Positive,1.028444
+cat__state_Gujarat,state_Gujarat,Categorical (One-Hot),0.026522,0.026522,Positive,1.026877
+cat__city_Varanasi,city_Varanasi,Categorical (One-Hot),0.025543,0.025543,Positive,1.025872
+cat__city_Mysuru,city_Mysuru,Categorical (One-Hot),-0.025196,0.025196,Negative,0.975119
+num__missingindicator_recency_delivered_days,missing_recency_delivered_days [Missing Indicator],Missingness Indicator,0.024813,0.024813,Positive,1.025123
+num__has_delivered_order,has_delivered_order (Standardized),Numerical (Standardized),-0.024813,0.024813,Negative,0.975492
+cat__state_Uttar Pradesh,state_Uttar Pradesh,Categorical (One-Hot),-0.024632,0.024632,Negative,0.975668
+cat__city_Kochi,city_Kochi,Categorical (One-Hot),-0.024405,0.024405,Negative,0.975891
+cat__state_Kerala,state_Kerala,Categorical (One-Hot),-0.024405,0.024405,Negative,0.975891
+num__hist_delivery_delay_missing_count,hist_delivery_delay_missing_count (Standardized),Numerical (Standardized),0.023805,0.023805,Positive,1.02409
+cat__city_Chennai,city_Chennai,Categorical (One-Hot),0.023176,0.023176,Positive,1.023447
+cat__state_Punjab,state_Punjab,Categorical (One-Hot),0.022972,0.022972,Positive,1.023238
+cat__city_Chandigarh,city_Chandigarh,Categorical (One-Hot),0.022972,0.022972,Positive,1.023238
+num__hist_delivery_delay_missing_rate,hist_delivery_delay_missing_rate (Standardized),Numerical (Standardized),-0.022207,0.022207,Negative,0.978037
+cat__city_Bhubaneswar,city_Bhubaneswar,Categorical (One-Hot),0.020577,0.020577,Positive,1.02079
+cat__state_Odisha,state_Odisha,Categorical (One-Hot),0.020577,0.020577,Positive,1.02079
+cat__state_Madhya Pradesh,state_Madhya Pradesh,Categorical (One-Hot),-0.018428,0.018428,Negative,0.981741
+num__hist_discount_missing_count,hist_discount_missing_count (Standardized),Numerical (Standardized),-0.018421,0.018421,Negative,0.981747
+num__orders_last_30_days,orders_last_30_days (Standardized),Numerical (Standardized),0.018144,0.018144,Positive,1.01831
+num__hist_upi_usage_rate,hist_upi_usage_rate (Standardized),Numerical (Standardized),-0.016864,0.016864,Negative,0.983278
+num__hist_cancellation_rate,hist_cancellation_rate (Standardized),Numerical (Standardized),0.014345,0.014345,Positive,1.014448
+cat__city_Patna,city_Patna,Categorical (One-Hot),-0.013938,0.013938,Negative,0.986158
+cat__state_Bihar,state_Bihar,Categorical (One-Hot),-0.013938,0.013938,Negative,0.986158
+cat__state_Rajasthan,state_Rajasthan,Categorical (One-Hot),0.011497,0.011497,Positive,1.011563
+cat__city_Jaipur,city_Jaipur,Categorical (One-Hot),0.011497,0.011497,Positive,1.011563
+cat__city_Nagpur,city_Nagpur,Categorical (One-Hot),0.010875,0.010875,Positive,1.010934
+num__delivered_orders_last_30_days,delivered_orders_last_30_days (Standardized),Numerical (Standardized),-0.010688,0.010688,Negative,0.989369
+cat__city_Coimbatore,city_Coimbatore,Categorical (One-Hot),0.008039,0.008039,Positive,1.008071
+num__hist_payment_missing_count,hist_payment_missing_count (Standardized),Numerical (Standardized),-0.007982,0.007982,Negative,0.99205
+cat__state_Unknown,state_Unknown,Categorical (One-Hot),-0.005776,0.005776,Negative,0.994241
+cat__city_Unknown,city_Unknown,Categorical (One-Hot),-0.005776,0.005776,Negative,0.994241
+cat__cluster_id_2,cluster_id_2,Categorical (One-Hot),0.005622,0.005622,Positive,1.005638
+num__hist_cod_usage_rate,hist_cod_usage_rate (Standardized),Numerical (Standardized),-0.001526,0.001526,Negative,0.998475
+cat__city_Ahmedabad,city_Ahmedabad,Categorical (One-Hot),-0.001525,0.001525,Negative,0.998477
+num__hist_average_discount_amount_inr,hist_average_discount_amount_inr (Standardized),Numerical (Standardized),0.00082,0.00082,Positive,1.000821

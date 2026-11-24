@@ -1,0 +1,267 @@
+{
+  "metadata": {
+    "title": "Indian E-Commerce Customer Retention Feature Manifest",
+    "generation_date": "2026-11-19 13:00:26",
+    "snapshot_cutoff_date": "2025-12-31",
+    "target_label_window": "2026-01-01 through 2026-03-31, inclusive",
+    "total_customers": 7000,
+    "target_column": "churn",
+    "identifier_columns": [
+      "customer_id",
+      "customer_name",
+      "signup_date"
+    ],
+    "leakage_safeguard": "All behavioral and transaction features are calculated strictly using historical orders where order_date <= 2025-12-31. Future orders are strictly excluded."
+  },
+  "target_definition": {
+    "name": "churn",
+    "type": "binary_integer",
+    "values": {
+      "0": "Retained (Customer completed at least 1 order between 2026-01-01 and 2026-03-31)",
+      "1": "Churned (Customer placed zero orders between 2026-01-01 and 2026-03-31)"
+    },
+    "source": "Existing validated ground truth from data/raw/customers.csv"
+  },
+  "features": {
+    "customer_id": {
+      "role": "identifier",
+      "type": "string",
+      "description": "Unique customer identification code",
+      "formula": "Primary key from customers.csv"
+    },
+    "customer_name": {
+      "role": "identifier",
+      "type": "string",
+      "description": "Customer full name (Excluded from predictive models to prevent demographic overfitting)",
+      "formula": "Direct from customers.csv"
+    },
+    "signup_date": {
+      "role": "profile",
+      "type": "date_string",
+      "description": "Account registration date (YYYY-MM-DD)",
+      "formula": "Direct from customers.csv"
+    },
+    "city": {
+      "role": "predictive",
+      "type": "categorical",
+      "description": "Customer registered city",
+      "formula": "customers.city with missing values encoded as 'Unknown'"
+    },
+    "state": {
+      "role": "predictive",
+      "type": "categorical",
+      "description": "Customer registered state",
+      "formula": "customers.state with missing values encoded as 'Unknown'"
+    },
+    "customer_tenure_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Account age in days as of snapshot date (2025-12-31)",
+      "formula": "2025-12-31 - signup_date"
+    },
+    "has_historical_orders": {
+      "role": "predictive",
+      "type": "binary_indicator",
+      "description": "Flag indicating whether customer has placed at least 1 order prior to snapshot date",
+      "formula": "1 if hist_order_count > 0 else 0"
+    },
+    "recency_days": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Days elapsed since the customer's last recorded order attempt across all statuses as of 2025-12-31 (NaN for zero-order accounts)",
+      "formula": "2025-12-31 - max(order_date <= 2025-12-31)"
+    },
+    "recency_delivered_days": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Days elapsed since the customer's last successfully delivered order as of 2025-12-31 (NaN if no delivered orders)",
+      "formula": "2025-12-31 - max(order_date <= 2025-12-31 where order_status == 'Delivered')"
+    },
+    "has_delivered_order": {
+      "role": "predictive",
+      "type": "binary_indicator",
+      "description": "Flag indicating whether customer has at least 1 delivered order prior to snapshot date",
+      "formula": "1 if hist_delivered_order_count > 0 else 0"
+    },
+    "hist_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total historical recorded orders placed by customer",
+      "formula": "Count of historical order records"
+    },
+    "hist_delivered_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total historical orders successfully delivered",
+      "formula": "Count of orders where order_status == 'Delivered'"
+    },
+    "hist_returned_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total historical orders returned by customer",
+      "formula": "Count of orders where order_status == 'Returned'"
+    },
+    "hist_cancelled_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total historical orders cancelled before delivery",
+      "formula": "Count of orders where order_status == 'Cancelled'"
+    },
+    "hist_total_order_value_inr": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Cumulative gross value of all booked orders placed by customer (INR)",
+      "formula": "Sum of order_amount_inr across all historical orders"
+    },
+    "hist_delivered_order_value_inr": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Cumulative gross sales value of successfully delivered orders (INR)",
+      "formula": "Sum of order_amount_inr where order_status == 'Delivered'"
+    },
+    "hist_total_recorded_discount_inr": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Cumulative promotional discount amount recorded for customer (INR, skipna=True)",
+      "formula": "Sum of recorded discount_amount_inr across historical orders"
+    },
+    "hist_average_order_value_inr": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Average booked order value (AOV) per customer (INR). Exactly 0.0 for zero-order accounts by deliberate convention.",
+      "formula": "hist_total_order_value_inr / hist_order_count if hist_order_count > 0 else 0.0"
+    },
+    "orders_last_30_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total orders booked within the last 30 days of the snapshot period (2025-12-02 to 2025-12-31)",
+      "formula": "Count of orders where order_date >= 2025-12-02"
+    },
+    "orders_last_90_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total orders booked within the last 90 days of the snapshot period (2025-10-03 to 2025-12-31)",
+      "formula": "Count of orders where order_date >= 2025-10-03"
+    },
+    "orders_last_180_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Total orders booked within the last 180 days of the snapshot period (2025-07-05 to 2025-12-31)",
+      "formula": "Count of orders where order_date >= 2025-07-05"
+    },
+    "delivered_orders_last_30_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Delivered orders completed in last 30 days before snapshot date",
+      "formula": "Count of delivered orders where order_date >= 2025-12-02"
+    },
+    "delivered_orders_last_90_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Delivered orders completed in last 90 days before snapshot date",
+      "formula": "Count of delivered orders where order_date >= 2025-10-03"
+    },
+    "delivered_orders_last_180_days": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Delivered orders completed in last 180 days before snapshot date",
+      "formula": "Count of delivered orders where order_date >= 2025-07-05"
+    },
+    "hist_return_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders that were returned",
+      "formula": "hist_returned_order_count / hist_order_count"
+    },
+    "hist_cancellation_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders that were cancelled",
+      "formula": "hist_cancelled_order_count / hist_order_count"
+    },
+    "hist_average_delivery_delay_days": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Average delivery delay days experienced across recorded historical orders (NaN if no records)",
+      "formula": "Mean of non-null delivery_delay_days"
+    },
+    "hist_delivery_delay_missing_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Count of historical orders where delivery delay was unrecorded",
+      "formula": "Count of orders where delivery_delay_days is null"
+    },
+    "hist_delivery_delay_missing_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders with missing delivery delay records",
+      "formula": "hist_delivery_delay_missing_count / hist_order_count"
+    },
+    "hist_average_discount_amount_inr": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Average promotional discount received on recorded discounted orders (INR)",
+      "formula": "Mean of non-null discount_amount_inr"
+    },
+    "hist_discounted_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Count of historical orders with recorded discount > 0",
+      "formula": "Count of orders where discount_amount_inr > 0"
+    },
+    "hist_discount_missing_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Count of historical orders where discount information was missing",
+      "formula": "Count of orders where discount_amount_inr is null"
+    },
+    "hist_discount_missing_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of orders with missing discount record",
+      "formula": "hist_discount_missing_count / hist_order_count"
+    },
+    "hist_payment_missing_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Count of historical orders where payment method was unrecorded (null)",
+      "formula": "Count of historical orders where payment_method is null"
+    },
+    "hist_payment_missing_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders with unrecorded payment method",
+      "formula": "hist_payment_missing_count / hist_order_count if hist_order_count > 0 else 0.0"
+    },
+    "hist_cod_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Number of orders paid using Cash on Delivery (COD)",
+      "formula": "Count of orders where payment_method == 'COD'"
+    },
+    "hist_cod_usage_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders paid using Cash on Delivery (COD)",
+      "formula": "hist_cod_order_count / hist_order_count"
+    },
+    "hist_upi_order_count": {
+      "role": "predictive",
+      "type": "numerical_integer",
+      "description": "Number of orders paid using Unified Payments Interface (UPI)",
+      "formula": "Count of orders where payment_method == 'UPI'"
+    },
+    "hist_upi_usage_rate": {
+      "role": "predictive",
+      "type": "numerical_float",
+      "description": "Proportion of customer orders paid using Unified Payments Interface (UPI)",
+      "formula": "hist_upi_order_count / hist_order_count"
+    },
+    "churn": {
+      "role": "target",
+      "type": "binary_integer",
+      "description": "Ground truth 90-day churn label (0 = Retained, 1 = Churned)",
+      "formula": "1 if customer placed zero orders between 2026-01-01 and 2026-03-31 else 0"
+    }
+  }
+}

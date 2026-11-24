@@ -1,0 +1,70 @@
+{
+  "manifest_version": "1.1",
+  "phase": "Phase 4 - Customer Segmentation",
+  "input_dataset": "data\\processed\\customer_features.csv",
+  "observation_snapshot": "2025-12-31",
+  "clustering_features_ordered": [
+    "recency_delivered_days",
+    "hist_delivered_order_count",
+    "hist_delivered_order_value_inr"
+  ],
+  "transformation": "np.log1p",
+  "scaler_type": "StandardScaler",
+  "scaler_artifact": "models\\segmentation_scaler.joblib",
+  "model_type": "sklearn.cluster.KMeans",
+  "model_artifact": "models\\kmeans_customer_segmentation.joblib",
+  "hyperparameters": {
+    "n_clusters": 5,
+    "random_state": 42,
+    "n_init": 20,
+    "max_iter": 300,
+    "tol": 0.0001
+  },
+  "k_selection": {
+    "tested_k": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "selected_k": 5,
+    "technical_justification": "Clear WCSS elbow at K=5; local silhouette peak (0.4065); natural separation of unactivated accounts; balanced commercial segments."
+  },
+  "target_exclusion_certification": {
+    "churn_column_used_in_clustering": false,
+    "identifiers_used_in_clustering": false,
+    "certification": "Strictly unsupervised. Churn is evaluated only post-clustering for descriptive cross-tabulation."
+  },
+  "zero_delivered_strategy": {
+    "umbrella_persona_name": "Zero Delivered-Purchase Customers",
+    "zero_delivered_customers_count": 484,
+    "never_purchased_count": 148,
+    "attempted_unfulfilled_count": 336,
+    "imputed_recency_days": 1117.0,
+    "isolation_result": "K-Means isolates all 484 zero-delivered customers cleanly into Cluster 2 without polluting active clusters."
+  },
+  "raw_data_integrity": {
+    "customers_csv_md5": "EA39F916F2FA2D432F40F894F63A1715",
+    "customers_csv_sha256": "DF6219AA4E2BDDE8FFF419272B9F2C1DE0602473248619E90566BC7D498AB70E",
+    "orders_csv_md5": "7E65B96077288D3DBDA3E50FAF6FD5EB",
+    "orders_csv_sha256": "AB632B3092F732B3B25BAAD096B191C1ACA777CB8D42B29EABB815A266C558E7"
+  },
+  "output_artifacts": {
+    "customer_segments": "data\\processed\\customer_segments.csv",
+    "cluster_profiles": "data\\processed\\cluster_profiles.csv",
+    "segmentation_metrics": "data\\processed\\segmentation_metrics.json",
+    "visualizations": [
+      "phase4_elbow_method.png",
+      "phase4_silhouette_scores.png",
+      "phase4_cluster_distribution.png",
+      "phase4_rfm_cluster_profiles.png",
+      "phase4_cluster_scatter_pca.png",
+      "phase4_cluster_comparison_heatmap.png"
+    ]
+  }
+}

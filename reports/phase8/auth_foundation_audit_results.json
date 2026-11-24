@@ -1,0 +1,70 @@
+{
+  "viewports": {
+    "1440px Desktop": {
+      "sections": {
+        "hero": true,
+        "platform": true,
+        "features": true,
+        "howItWorks": true,
+        "about": true,
+        "footer": true
+      },
+      "isBlank": false,
+      "textLength": 19382,
+      "hasExposedSecrets": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "hasHorizontalOverflow": false
+    },
+    "1024px Laptop": {
+      "sections": {
+        "hero": true,
+        "platform": true,
+        "features": true,
+        "howItWorks": true,
+        "about": true,
+        "footer": true
+      },
+      "isBlank": false,
+      "textLength": 19382,
+      "hasExposedSecrets": false,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "hasHorizontalOverflow": false
+    },
+    "768px Tablet": {
+      "sections": {
+        "hero": true,
+        "platform": true,
+        "features": true,
+        "howItWorks": true,
+        "about": true,
+        "footer": true
+      },
+      "isBlank": false,
+      "textLength": 19366,
+      "hasExposedSecrets": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "hasHorizontalOverflow": false
+    },
+    "390px Mobile": {
+      "sections": {
+        "hero": true,
+        "platform": true,
+        "features": true,
+        "howItWorks": true,
+        "about": true,
+        "footer": true
+      },
+      "isBlank": false,
+      "textLength": 19265,
+      "hasExposedSecrets": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "hasHorizontalOverflow": false
+    }
+  },
+  "console_errors_count": 0,
+  "console_errors": []
+}

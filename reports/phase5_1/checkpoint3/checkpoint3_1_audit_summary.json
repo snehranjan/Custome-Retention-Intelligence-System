@@ -1,0 +1,104 @@
+{
+  "checkpoint": "Phase 5.1 Checkpoint 3.1",
+  "audit_title": "Final Methodology Audit Before ML Completion",
+  "audit_date": "2026-11-19T16:39:00",
+  "auditor": "Senior Machine Learning Engineer and Independent Technical Auditor",
+  "project_directive": {
+    "target_accuracy_80_status": "Formally abandoned; ~71.4% cross-validated accuracy accepted as scientifically and practically sound",
+    "integrity_commitment": "No data manipulation, leakage, label distortion, or customer exclusion permitted"
+  },
+  "experiment_grid_coverage": {
+    "theoretical_combinations": 28,
+    "executed_combinations": 12,
+    "combinations_evaluated": [
+      "logistic_regression_config_a",
+      "logistic_regression_config_b",
+      "logistic_regression_config_c",
+      "logistic_regression_config_d",
+      "decision_tree_config_c",
+      "random_forest_config_c",
+      "random_forest_config_d",
+      "extra_trees_config_c",
+      "gradient_boosting_config_c",
+      "hist_gradient_boosting_config_c",
+      "hist_gradient_boosting_config_d",
+      "voting_ensemble_config_c"
+    ],
+    "rationale": "Evaluated linear baselines across all 4 configs, non-linear tree ensembles on advanced features (Config C), and correlation pruning on top candidates (Config D)."
+  },
+  "nested_cv_and_oof_audit": {
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "development_samples": 5950,
+    "oof_prediction_rows": 5950,
+    "unique_oof_customer_ids": 5950,
+    "historical_test_leakage_rows": 0,
+    "independent_cohort_leakage_rows": 0,
+    "probabilities_bounded_and_finite": true,
+    "protocol_status": "Leakage-free, verified 1-to-1 OOF generalization"
+  },
+  "optimism_disclosures": {
+    "unbiased_default_threshold": 0.5,
+    "unbiased_nested_cv_metrics": {
+      "accuracy": 0.713445,
+      "accuracy_std": 0.016251,
+      "recall": 0.710203,
+      "recall_std": 0.013057,
+      "precision": 0.679585,
+      "precision_std": 0.02127,
+      "f1": 0.694398,
+      "f1_std": 0.014523,
+      "roc_auc": 0.779817,
+      "roc_auc_std": 0.016355
+    },
+    "candidate_selection_optimism": "random_forest_config_d is the sample maximum across 12 evaluated candidates; expected to exhibit mild shrinkage on unseen data.",
+    "threshold_selection_optimism": "Threshold tau = 0.40 maximizes empirical F1 (0.7061) on pooled development OOF predictions; must be independently validated on sealed test cohort."
+  },
+  "pipeline_artifact_verification": {
+    "selected_candidate_id": "random_forest_config_d",
+    "saved_artifact_path": "models/phase5_1/checkpoint3/random_forest_config_d_pipeline.joblib",
+    "sha256": "24F1F0E33C75B5590906369960DB6E5951EC95DF9AE40384DA60082B3438F301",
+    "fitted_sample_size": 5950,
+    "tree_root_weighted_samples": 5950.0,
+    "refit_scope": "Full 100% development dataset (train + validation), verified not an outer fold subset"
+  },
+  "transformed_feature_schema": {
+    "total_transformed_features": 73,
+    "numerical_features_count": 29,
+    "categorical_features_count": 44,
+    "dimension_alignment_status": "1:1 verified between get_feature_names_out() and transform()"
+  },
+  "bayes_error_analysis": {
+    "latent_oracle_error_rate": 0.2603,
+    "latent_oracle_accuracy_ceiling": 0.7397,
+    "achieved_cv_accuracy": 0.7134,
+    "distance_to_oracle_ceiling": 0.0263,
+    "generator_actual_propensities": {
+      "loyal_vip": 0.08,
+      "steady": 0.22,
+      "occasional": 0.45,
+      "dissatisfied": 0.68,
+      "dormant": 0.88,
+      "zero_order": 0.94
+    },
+    "methodological_note": "The 26.03% figure assumes knowledge of latent personas. Conditional on observable features X, Bayes error R*(X) >= 26.03%. 73.97% is an oracle ceiling assuming latent knowledge, not a proven universal ceiling on X. Chasing 80% accuracy is mathematically unfeasible without label leakage."
+  },
+  "threshold_sweep_reconciliation": {
+    "range_min": 0.2,
+    "range_max": 0.81,
+    "step_size": 0.01,
+    "total_threshold_steps": 62,
+    "status": "Reconciled and confirmed against threshold_analysis.csv"
+  },
+  "cryptographic_invariance": {
+    "phase5_production_model": "INVARIANT (25B91797F8F36DB605BAB98B8568A5911847B8CCE77334A68AE4E3862CD3B35D)",
+    "historical_test_set": "INVARIANT (93926052072C2C0AF6FC3E7279385B0B31C898CC9798FBC1EF78FBA1CAEDBD67)",
+    "sealed_independent_customers": "INVARIANT (D3B694F9F3488BB1CAF81C49603A9E322396F48ADDBA6E96246BD91B211F53B4)",
+    "sealed_independent_orders": "INVARIANT (BE7B293A283A90E7AC78F92D681BE4D0ACA58C3CC2235BCC7EDCBF2348FBAF8E)",
+    "sealed_independent_manifest": "INVARIANT (6320757631ED9F8A598D32EFD8EA7CB095960B9885517F2FCAA80A1FA2FA236C)"
+  },
+  "audit_recommendation": {
+    "status": "APPROVED",
+    "recommendation": "Approve Phase 5.1 Checkpoint 3 candidate selection and proceed to Phase 5.1 Checkpoint 4 (Candidate Validation, Final Model Comparison & Production Selection)."
+  }
+}

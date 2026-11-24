@@ -1,0 +1,5 @@
+actual_class,predicted_class,metric_label,count,percentage_of_total
+Retained (0),Retained (0),True Negative (TN),345,32.86
+Retained (0),Churned (1),False Positive (FP),224,21.33
+Churned (1),Retained (0),False Negative (FN),123,11.71
+Churned (1),Churned (1),True Positive (TP),358,34.1

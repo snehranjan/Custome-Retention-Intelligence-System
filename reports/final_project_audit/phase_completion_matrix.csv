@@ -1,0 +1,25 @@
+Phase/Checkpoint,Requirement,Source Files Inspected,Verification Method,Result,Outstanding Issues
+Phase 0,Python 3.12 venv and dependencies,backend/requirements.txt; backend/.venv,python -m pip list; py_compile all modules,VERIFIED,None
+Phase 0,Node.js & npm availability,C:/Program Files/nodejs,node --version; npm.cmd --version,VERIFIED,None
+Phase 0,Project directory structure & gitignore,README.md; .gitignore; backend; data; models; reports,Directory existence & gitignore scan,VERIFIED,None
+Phase 1,7000 customers & 84225 orders with snapshot 2025-12-31,backend/ml/generate_data.py; data/raw/customers.csv; data/raw/orders.csv,validate_data.py (10/10 checks passed),VERIFIED,None
+Phase 1,Referential integrity & strict churn ground-truth consistency,data/raw/customers.csv; data/raw/orders.csv,validate_data.py Check 04-08 (zero orphan records),VERIFIED,None
+Phase 2,EDA code report and 15 publication-grade figures,backend/ml/explore_data.py; reports/eda_report.md; reports/figures/,Inspection of 15 figures & statistical metrics,VERIFIED,None
+Phase 2,Strict temporal partition between historical and future orders,backend/ml/explore_data.py; data/raw/orders.csv,Max historical order date <= 2025-12-31,VERIFIED,None
+Phase 3,Customer feature matrix (7000 rows x 36 features),backend/ml/feature_engineering.py; data/processed/customer_features.csv,validate_features.py (23/23 checks passed),VERIFIED,None
+Phase 3,Anti-leakage perturbation and target separation tests,backend/ml/validate_features.py; data/processed/feature_manifest.json,Future perturbation & target shuffling tests passed,VERIFIED,None
+Phase 4,RFM K-Means clustering with K=5,backend/ml/customer_segmentation.py; models/kmeans_customer_segmentation.joblib,validate_segmentation.py (26/26 checks passed),VERIFIED,None
+Phase 4,Zero-delivered customer isolation (Cluster 2: N=484),data/processed/customer_segments.csv; data/processed/cluster_profiles.csv,100% pure isolation of zero-delivered accounts,VERIFIED,None
+Phase 4,Cluster persona mapping & multi-seed stability (ARI >= 0.95),data/processed/cluster_profiles.csv; models/segmentation_scaler.joblib,Pairwise seed stability ARI = 0.9931,VERIFIED,None
+Phase 5,Modeling dataset & stratified train/val/test splits (4900/1050/1050),backend/ml/prepare_modeling_data.py; backend/ml/split_dataset.py,validate_modeling_data.py (20/20 checks passed),VERIFIED,None
+Phase 5,Supervised model training (LR/DT/RF/GB across Config A & B),backend/ml/train_models.py; models/phase5/,validate_training.py (20/20 checks passed),VERIFIED,None
+Phase 5,Baseline benchmark selection (Logistic Regression Config B),backend/ml/finalize_model.py; reports/phase5/final_test_metrics.json,validate_final_model.py (18/18 checks passed),VERIFIED,None
+Phase 5.1 CP 1 & 1.1,Generator deconstruction & latent oracle error analysis,backend/ml/generate_data.py; reports/phase5_1/checkpoint1_model_audit.md,Audit of actual generator probabilities (p=0.08..0.94),VERIFIED,None
+Phase 5.1 CP 2,Independent synthetic test cohort generation (N=1500),backend/ml/generate_independent_cohort.py; data/independent_test/raw/,validate_independent_cohort.py (14/14 checks passed),VERIFIED,None
+Phase 5.1 CP 2.1 & 2.2,Advanced feature engineering (momentum/friction) & CorrelationPruner,backend/ml/advanced_feature_engineering.py; reports/phase5_1/checkpoint2_2_pruner_alignment_audit.md,validate_advanced_features.py (5/5 suites passed),VERIFIED,None
+Phase 5.1 CP 3,5x3 Nested Stratified CV across 12 combinations,backend/ml/experiment_checkpoint3.py; reports/phase5_1/checkpoint3/,validate_checkpoint3.py (12/12 checks passed),VERIFIED,None
+Phase 5.1 CP 3.1,Methodology audit & optimism disclosures (winner's curse),reports/phase5_1/checkpoint3_1_methodology_audit.md,Audit of sample refit (N=5950) & Bayes ceiling,VERIFIED,None
+Phase 5.1 CP 4,Model lock (SHA-256 24F1F0E3...) and pre-locked threshold 0.50,models/phase5_1/checkpoint3/random_forest_config_d_pipeline.joblib,Cryptographic lock manifest verification,VERIFIED,None
+Phase 5.1 CP 4,Single independent evaluation on 1500 unseen customers,backend/ml/evaluate_independent_final.py; reports/phase5_1/final_evaluation/,validate_final_ml.py (12/12 checks passed),VERIFIED,None
+Phase 5.1 CP 4,Master test harness execution across all phases,tests/test_all_phases.py,pytest execution (10/10 passed in 12.03s),VERIFIED,None
+Phase 5.1 CP 4,Inference contract specification for web integration,reports/phase5_1/final_evaluation/ml_completion_report.md,Documented 43-feature input schema & FastAPI handler,VERIFIED,None

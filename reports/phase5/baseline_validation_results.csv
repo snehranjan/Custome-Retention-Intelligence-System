@@ -1,0 +1,9 @@
+model_key,model_name,config_key,config_name,feature_count,threshold,accuracy,precision,recall,f1_score,roc_auc,average_precision,balanced_accuracy,specificity,true_positives,false_positives,true_negatives,false_negatives
+logistic_regression,Logistic Regression,config_a,Configuration A (Baseline 36 Features),36,0.5,0.699,0.6829,0.6403,0.6609,0.7742,0.7341,0.6945,0.7487,308,143,426,173
+logistic_regression,Logistic Regression,config_b,Configuration B (36 Features + RFM cluster_id),37,0.5,0.7048,0.6896,0.6466,0.6674,0.7769,0.7365,0.7003,0.754,311,140,429,170
+decision_tree,Decision Tree,config_a,Configuration A (Baseline 36 Features),36,0.5,0.6857,0.6576,0.6549,0.6562,0.7392,0.6816,0.6833,0.7118,315,164,405,166
+decision_tree,Decision Tree,config_b,Configuration B (36 Features + RFM cluster_id),37,0.5,0.6895,0.6611,0.6611,0.6611,0.7423,0.6809,0.6873,0.7135,318,163,406,163
+random_forest,Random Forest,config_a,Configuration A (Baseline 36 Features),36,0.5,0.7048,0.6855,0.657,0.6709,0.7753,0.7398,0.7011,0.7452,316,145,424,165
+random_forest,Random Forest,config_b,Configuration B (36 Features + RFM cluster_id),37,0.5,0.7057,0.6853,0.6611,0.673,0.7707,0.734,0.7023,0.7434,318,146,423,163
+gradient_boosting,Gradient Boosting,config_a,Configuration A (Baseline 36 Features),36,0.5,0.7,0.6789,0.6549,0.6667,0.7828,0.7496,0.6965,0.7381,315,149,420,166
+gradient_boosting,Gradient Boosting,config_b,Configuration B (36 Features + RFM cluster_id),37,0.5,0.6981,0.6767,0.6528,0.6646,0.7834,0.7506,0.6946,0.7364,314,150,419,167

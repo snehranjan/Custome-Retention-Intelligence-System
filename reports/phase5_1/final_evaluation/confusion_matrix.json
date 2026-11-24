@@ -1,0 +1,23 @@
+{
+  "confusion_matrix": {
+    "tn": 571,
+    "fp": 258,
+    "fn": 208,
+    "tp": 463
+  },
+  "rates": {
+    "tpr_recall": 0.6900149031296572,
+    "tnr_specificity": 0.6887816646562123,
+    "fpr": 0.3112183353437877,
+    "fnr": 0.30998509687034276,
+    "precision_ppv": 0.6421636615811374,
+    "npv": 0.7329910141206675
+  },
+  "totals": {
+    "actual_positive": 671,
+    "actual_negative": 829,
+    "predicted_positive": 721,
+    "predicted_negative": 779,
+    "total_samples": 1500
+  }
+}

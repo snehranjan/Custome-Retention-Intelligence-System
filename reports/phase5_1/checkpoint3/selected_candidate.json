@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "checkpoint": "Phase 5.1 Checkpoint 3",
+    "selection_date": "2026-11-19T16:22:36.211298",
+    "experiment_id": "random_forest_config_d",
+    "model_type": "random_forest",
+    "configuration": "config_d",
+    "development_sample_size": 5950,
+    "cross_validation": "5x3 Nested Stratified Cross-Validation"
+  },
+  "best_hyperparameters": {
+    "clf__class_weight": "balanced",
+    "clf__max_depth": 8,
+    "clf__min_samples_leaf": 5
+  },
+  "nested_cv_performance": {
+    "accuracy": 0.7134453781512605,
+    "accuracy_std": 0.01625132739984348,
+    "recall": 0.7102033135060658,
+    "recall_std": 0.013057453102277933,
+    "precision": 0.679584785303767,
+    "precision_std": 0.02127047996663797,
+    "f1": 0.6943984325969362,
+    "f1_std": 0.01452300714343886,
+    "roc_auc": 0.7798167957266415,
+    "roc_auc_std": 0.01635471795944211,
+    "average_precision": 0.7441905170300978,
+    "average_precision_std": 0.02078019554189115,
+    "balanced_accuracy": 0.7131980985653493,
+    "balanced_accuracy_std": 0.015523769019554812,
+    "specificity": 0.7161928836246328,
+    "specificity_std": 0.026236279929282624
+  },
+  "decision_threshold_selection": {
+    "selected_threshold": 0.4,
+    "selection_rationale": "Optimized to balance F1-score maximization while maintaining >=70% churn recall constraint on development out-of-fold predictions.",
+    "metrics_at_selected_threshold": {
+      "threshold": 0.4,
+      "accuracy": 0.6729,
+      "precision": 0.6001,
+      "recall": 0.8577,
+      "f1": 0.7061,
+      "balanced_accuracy": 0.6872,
+      "specificity": 0.5167,
+      "tp": 2338.0,
+      "fp": 1558.0,
+      "tn": 1666.0,
+      "fn": 388.0
+    },
+    "f1_maximizing_threshold": {
+      "threshold": 0.4,
+      "accuracy": 0.6729,
+      "precision": 0.6001,
+      "recall": 0.8577,
+      "f1": 0.7061,
+      "balanced_accuracy": 0.6872,
+      "specificity": 0.5167,
+      "tp": 2338.0,
+      "fp": 1558.0,
+      "tn": 1666.0,
+      "fn": 388.0
+    },
+    "accuracy_maximizing_threshold": {
+      "threshold": 0.5,
+      "accuracy": 0.7134,
+      "precision": 0.6791,
+      "recall": 0.7102,
+      "f1": 0.6943,
+      "balanced_accuracy": 0.7132,
+      "specificity": 0.7162,
+      "tp": 1936.0,
+      "fp": 915.0,
+      "tn": 2309.0,
+      "fn": 790.0
+    },
+    "recall_70_target_threshold": {
+      "threshold": 0.5,
+      "accuracy": 0.7134,
+      "precision": 0.6791,
+      "recall": 0.7102,
+      "f1": 0.6943,
+      "balanced_accuracy": 0.7132,
+      "specificity": 0.7162,
+      "tp": 1936.0,
+      "fp": 915.0,
+      "tn": 2309.0,
+      "fn": 790.0
+    }
+  },
+  "transformed_feature_count": 73,
+  "artifact_paths": {
+    "model_file": "random_forest_config_d_pipeline.joblib",
+    "nested_cv_results": "nested_cv_results.csv",
+    "candidate_comparison": "candidate_comparison.csv",
+    "threshold_analysis": "threshold_analysis.csv",
+    "out_of_fold_predictions": "out_of_fold_predictions.csv",
+    "error_analysis": "error_analysis.csv",
+    "feature_name_mapping": "feature_name_mapping.json"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "dataset_name": "Phase 5.1 Independent Synthetic Test Cohort",
+  "generated_at": "2026-11-19T15:47:13.850103",
+  "random_seed": 2026,
+  "snapshot_date": "2025-12-31",
+  "label_window_start": "2026-01-01",
+  "label_window_end": "2026-03-31",
+  "future_window_days": 90,
+  "customers": {
+    "file": "customers_independent.csv",
+    "sha256": "D3B694F9F3488BB1CAF81C49603A9E322396F48ADDBA6E96246BD91B211F53B4",
+    "total_records": 1500,
+    "customer_id_min": "IND_CUST_50001",
+    "customer_id_max": "IND_CUST_51500",
+    "churn_distribution": {
+      "retained_0": 829,
+      "churned_1": 671,
+      "churn_rate": 0.4473
+    }
+  },
+  "orders": {
+    "file": "orders_independent.csv",
+    "sha256": "BE7B293A283A90E7AC78F92D681BE4D0ACA58C3CC2235BCC7EDCBF2348FBAF8E",
+    "total_records": 17585,
+    "historical_records": 15032,
+    "future_records": 2553,
+    "order_id_min": "ORD_500001",
+    "order_id_max": "ORD_517585"
+  },
+  "isolation_proof": {
+    "customer_id_overlap_count": 0,
+    "order_id_overlap_count": 0,
+    "set_disjointness_verified": true
+  }
+}

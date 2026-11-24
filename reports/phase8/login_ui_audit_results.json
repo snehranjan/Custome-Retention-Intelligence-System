@@ -1,0 +1,86 @@
+{
+  "audit": {
+    "landing_page": {
+      "sections": {
+        "hero": true,
+        "platform": true,
+        "features": true,
+        "howItWorks": true,
+        "about": true,
+        "footer": true
+      },
+      "scrollWidth": 764,
+      "clientWidth": 764,
+      "textLength": 19324
+    },
+    "login_page": {
+      "1440px Desktop": {
+        "hasEmailInput": true,
+        "hasPasswordInput": true,
+        "hasSubmitBtn": true,
+        "hasToggleBtn": true,
+        "hasHomeBtn": true,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasHorizontalOverflow": false,
+        "emailRect": {},
+        "submitRect": {}
+      },
+      "1024px Laptop": {
+        "hasEmailInput": true,
+        "hasPasswordInput": true,
+        "hasSubmitBtn": true,
+        "hasToggleBtn": true,
+        "hasHomeBtn": true,
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasHorizontalOverflow": false,
+        "emailRect": {},
+        "submitRect": {}
+      },
+      "768px Tablet": {
+        "hasEmailInput": true,
+        "hasPasswordInput": true,
+        "hasSubmitBtn": true,
+        "hasToggleBtn": true,
+        "hasHomeBtn": true,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasHorizontalOverflow": false,
+        "emailRect": {},
+        "submitRect": {}
+      },
+      "390px Mobile": {
+        "hasEmailInput": true,
+        "hasPasswordInput": true,
+        "hasSubmitBtn": true,
+        "hasToggleBtn": true,
+        "hasHomeBtn": true,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasHorizontalOverflow": false,
+        "emailRect": {},
+        "submitRect": {}
+      }
+    },
+    "validation_test": {
+      "toggle": {
+        "afterClickType": "text",
+        "toggleAriaLabel": "Hide password"
+      },
+      "validationErrors": {
+        "emailErrorText": "Work email address is required.",
+        "passwordErrorText": "Password is required."
+      }
+    },
+    "navigation_test": {
+      "buttonClicked": true,
+      "destination": {
+        "pathname": "/employee/login",
+        "hasLoginForm": true
+      }
+    }
+  },
+  "console_errors_count": 0,
+  "console_errors": []
+}

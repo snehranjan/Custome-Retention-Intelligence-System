@@ -1,0 +1,157 @@
+{
+  "audit_timestamp": "2026-11-19T17:15:30",
+  "audit_scope": "Cryptographic Integrity and Immutability Audit of All System Artifacts",
+  "datasets": {
+    "raw_customers": {
+      "path": "data/raw/customers.csv",
+      "records": 7000,
+      "size_bytes": 500703,
+      "md5": "EA39F916F2FA2D432F40F894F63A1715",
+      "sha256": "DF6219AA4E2BDDE8FFF419272B9F2C1DE0602473248619E90566BC7D498AB70E",
+      "status": "INVARIANT"
+    },
+    "raw_orders": {
+      "path": "data/raw/orders.csv",
+      "records": 84225,
+      "size_bytes": 7735947,
+      "md5": "7E65B96077288D3DBDA3E50FAF6FD5EB",
+      "sha256": "AB632B3092F732B3B25BAAD096B191C1ACA777CB8D42B29EABB815A266C558E7",
+      "status": "INVARIANT"
+    },
+    "customer_features": {
+      "path": "data/processed/customer_features.csv",
+      "records": 7000,
+      "size_bytes": 1314182,
+      "md5": "6D9CA7E9C4E27F701C189E8F4609F6A5",
+      "sha256": "3B8CFF35A9012A7E6524FEC962D400BE58D29399BF4DF7A80DE7283B69B4C628",
+      "status": "INVARIANT"
+    },
+    "customer_segments": {
+      "path": "data/processed/customer_segments.csv",
+      "records": 7000,
+      "size_bytes": 518577,
+      "md5": "4DF32D70AE8A18177D854F28D7746F32",
+      "sha256": "FA9CDAE1BDE7BAE4D0370FFCB31B1155F803C8BD49AB43DAF0B79A19DB3715B3",
+      "status": "INVARIANT"
+    },
+    "cluster_profiles": {
+      "path": "data/processed/cluster_profiles.csv",
+      "records": 5,
+      "size_bytes": 1775,
+      "md5": "87D27AD35CCD2ACB1856BAA00EDDCFEB",
+      "sha256": "315ED871E3377169CC1990C3F47F443D630ECEFC11F910EBA160BBC55413E883",
+      "status": "INVARIANT"
+    },
+    "modeling_dataset": {
+      "path": "data/modeling/modeling_dataset.csv",
+      "records": 7000,
+      "size_bytes": 1156821,
+      "md5": "D492861D519E1081F86B8F59368DA189",
+      "sha256": "04F0C4DA941030F5E06BC9DE9A57FCCBB7AC063AD715FBEAC69696C28B536B49",
+      "status": "INVARIANT"
+    },
+    "modeling_train": {
+      "path": "data/modeling/train.csv",
+      "records": 4900,
+      "size_bytes": 809599,
+      "md5": "D1E089133C694E70FFE5779664D4522D",
+      "sha256": "04922D9AA08E8F0C6B09BE16DCF7278379B85A70A8CEDCB53056E690E540D2DB",
+      "status": "INVARIANT"
+    },
+    "modeling_validation": {
+      "path": "data/modeling/validation.csv",
+      "records": 1050,
+      "size_bytes": 173986,
+      "md5": "5E251761BF4E404E1AB67C3742EC2EEB",
+      "sha256": "DFC25B2363BD184BA62F6B3630701692341F987B166238300F37DC868CBBEC31",
+      "status": "INVARIANT"
+    },
+    "modeling_test": {
+      "path": "data/modeling/test.csv",
+      "records": 1050,
+      "size_bytes": 175036,
+      "md5": "59B8F7FC2F082A2CDEF2F66C2094E747",
+      "sha256": "93926052072C2C0AF6FC3E7279385B0B31C898CC9798FBC1EF78FBA1CAEDBD67",
+      "status": "INVARIANT"
+    },
+    "independent_customers": {
+      "path": "data/independent_test/raw/customers_independent.csv",
+      "records": 1500,
+      "size_bytes": 107677,
+      "md5": "BCD8723ED7BDADBC37DF25952AAF4EDE",
+      "sha256": "D3B694F9F3488BB1CAF81C49603A9E322396F48ADDBA6E96246BD91B211F53B4",
+      "status": "INVARIANT"
+    },
+    "independent_orders": {
+      "path": "data/independent_test/raw/orders_independent.csv",
+      "records": 17585,
+      "size_bytes": 1615793,
+      "md5": "A76AAB1C48EB0446582A467D12C2125C",
+      "sha256": "BE7B293A283A90E7AC78F92D681BE4D0ACA58C3CC2235BCC7EDCBF2348FBAF8E",
+      "status": "INVARIANT"
+    },
+    "independent_manifest": {
+      "path": "data/independent_test/raw/independent_cohort_manifest.json",
+      "size_bytes": 1101,
+      "md5": "8F32DED549438733DB9BD74172EEA838",
+      "sha256": "6320757631ED9F8A598D32EFD8EA7CB095960B9885517F2FCAA80A1FA2FA236C",
+      "status": "INVARIANT"
+    }
+  },
+  "models": {
+    "phase4_scaler": {
+      "path": "models/segmentation_scaler.joblib",
+      "size_bytes": 975,
+      "md5": "2F85B2A8D7B11E61B5CAE3B51D1EEF25",
+      "sha256": "892B9F3CDDA5427DD3965C76B95C1BC952661BAEA993FBBA94D5A3F56FB2EC4C",
+      "status": "INVARIANT"
+    },
+    "phase4_kmeans": {
+      "path": "models/kmeans_customer_segmentation.joblib",
+      "size_bytes": 28855,
+      "md5": "42AF55566CF34EC0C69D56BB27051AD8",
+      "sha256": "A018E41C8DC78BBDEC7C157B71ED66FEAC698336F787B39D84583FAE9CB931B3",
+      "status": "INVARIANT"
+    },
+    "phase5_baseline_model": {
+      "path": "models/phase5/final_churn_pipeline.joblib",
+      "size_bytes": 9658,
+      "md5": "A465AE16D169C5258FCA093906F8E2E7",
+      "sha256": "25B91797F8F36DB605BAB98B8568A5911847B8CCE77334A68AE4E3862CD3B35D",
+      "status": "INVARIANT"
+    },
+    "phase5_1_selected_model": {
+      "path": "models/phase5_1/checkpoint3/random_forest_config_d_pipeline.joblib",
+      "size_bytes": 2629147,
+      "md5": "4E764F568FFDD97D631C90BF7D231733",
+      "sha256": "24F1F0E33C75B5590906369960DB6E5951EC95DF9AE40384DA60082B3438F301",
+      "status": "APPROVED_AND_LOCKED"
+    },
+    "phase5_1_production_copy": {
+      "path": "models/phase5_1/final_model/final_churn_rf_pipeline.joblib",
+      "size_bytes": 2629147,
+      "md5": "4E764F568FFDD97D631C90BF7D231733",
+      "sha256": "24F1F0E33C75B5590906369960DB6E5951EC95DF9AE40384DA60082B3438F301",
+      "status": "IDENTICAL_PRODUCTION_MIRROR"
+    }
+  },
+  "evaluation_outputs": {
+    "model_lock_manifest": {
+      "path": "reports/phase5_1/final_evaluation/final_model_lock_manifest.json",
+      "sha256": "BA82C83EF7C2B544F307028D09460816E15174DB90E458045BE3BA968A4B6E22"
+    },
+    "independent_test_metrics": {
+      "path": "reports/phase5_1/final_evaluation/independent_test_metrics.json",
+      "sha256": "52C8823636FB7D002F92CDBD55C1BD16B704830AE898DADD02BF70F073D3BF1E"
+    },
+    "confusion_matrix": {
+      "path": "reports/phase5_1/final_evaluation/confusion_matrix.json",
+      "sha256": "F3523FD7463342DE363ADEDD737C8CEC93CAA4F8CD12743044F94D651627EA5A"
+    },
+    "independent_test_predictions": {
+      "path": "reports/phase5_1/final_evaluation/independent_test_predictions.csv",
+      "sha256": "2A34E93E54C2A47239AE1144AB6F71E52F07941696F84263943DE6EF5AC1653B"
+    }
+  },
+  "audit_verdict": "100% CRYPTOGRAPHIC IMMUTABILITY & INTEGRITY VERIFIED"
+}

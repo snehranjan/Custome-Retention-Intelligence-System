@@ -1,0 +1,519 @@
+{
+  "1440px Desktop": {
+    "dimensions": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 11718,
+      "clientHeight": 900,
+      "hasHorizontalOverflow": false,
+      "overflowDelta": 0,
+      "overflowingElementsCount": 0,
+      "sampleOverflowElements": []
+    },
+    "sections": {
+      "about": {
+        "id": "about",
+        "x": 0,
+        "y": 7960,
+        "width": 1440,
+        "height": 3693,
+        "top": 7960,
+        "bottom": 11653,
+        "paddingTop": "112px",
+        "paddingBottom": "112px",
+        "bg": "rgb(248, 250, 252)"
+      },
+      "howItWorks": {
+        "id": "how-it-works",
+        "x": 0,
+        "y": 6312,
+        "width": 1440,
+        "height": 1648,
+        "top": 6312,
+        "bottom": 7960,
+        "paddingTop": "112px",
+        "paddingBottom": "112px",
+        "bg": "rgba(255, 255, 255, 0.7)"
+      },
+      "footer": {
+        "id": "footer",
+        "x": 0,
+        "y": 11653,
+        "width": 1440,
+        "height": 65,
+        "top": 11653,
+        "bottom": 11718,
+        "paddingTop": "24px",
+        "paddingBottom": "24px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      "navbar": {
+        "id": "header",
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 94,
+        "top": 0,
+        "bottom": 94,
+        "paddingTop": "20px",
+        "paddingBottom": "20px",
+        "bg": "rgba(255, 255, 255, 0.8)"
+      },
+      "hiwToAboutGap": 0,
+      "aboutToFooterGap": 0
+    },
+    "about_details": {
+      "headingCount": 16,
+      "clippedHeadings": [],
+      "objectiveCardsCount": 8,
+      "clippedCards": [],
+      "sampleCards": [
+        {
+          "num": "01",
+          "title": "Historical Data Ingestion & Integrity",
+          "width": 288,
+          "height": 199,
+          "x": 120,
+          "isClipped": false
+        },
+        {
+          "num": "02",
+          "title": "Leakage-Free Preprocessing Pipeline",
+          "width": 288,
+          "height": 199,
+          "x": 424,
+          "isClipped": false
+        },
+        {
+          "num": "03",
+          "title": "Unsupervised Customer Segmentation",
+          "width": 288,
+          "height": 199,
+          "x": 728,
+          "isClipped": false
+        },
+        {
+          "num": "04",
+          "title": "Supervised Churn Risk Modeling",
+          "width": 288,
+          "height": 199,
+          "x": 1032,
+          "isClipped": false
+        }
+      ],
+      "techPillsCount": 8,
+      "clippedPills": [],
+      "buttons": [
+        {
+          "text": "Preview Employee Portal",
+          "width": 243,
+          "height": 50,
+          "visible": true
+        }
+      ]
+    },
+    "navigation": {
+      "finalScrollY": 7514,
+      "aboutTopRelativeToViewport": 430,
+      "isAboutInView": true
+    }
+  },
+  "1024px Laptop": {
+    "dimensions": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 12666,
+      "clientHeight": 768,
+      "hasHorizontalOverflow": false,
+      "overflowDelta": 0,
+      "overflowingElementsCount": 0,
+      "sampleOverflowElements": []
+    },
+    "sections": {
+      "about": {
+        "id": "about",
+        "x": 0,
+        "y": 8492,
+        "width": 1024,
+        "height": 4093,
+        "top": 8492,
+        "bottom": 12585,
+        "paddingTop": "112px",
+        "paddingBottom": "112px",
+        "bg": "rgb(248, 250, 252)"
+      },
+      "howItWorks": {
+        "id": "how-it-works",
+        "x": 0,
+        "y": 6719,
+        "width": 1024,
+        "height": 1773,
+        "top": 6719,
+        "bottom": 8492,
+        "paddingTop": "112px",
+        "paddingBottom": "112px",
+        "bg": "rgba(255, 255, 255, 0.7)"
+      },
+      "footer": {
+        "id": "footer",
+        "x": 0,
+        "y": 12585,
+        "width": 1024,
+        "height": 81,
+        "top": 12585,
+        "bottom": 12666,
+        "paddingTop": "24px",
+        "paddingBottom": "24px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      "navbar": {
+        "id": "header",
+        "x": 0,
+        "y": 7880,
+        "width": 1024,
+        "height": 86,
+        "top": 7880,
+        "bottom": 7966,
+        "paddingTop": "12px",
+        "paddingBottom": "12px",
+        "bg": "rgba(255, 255, 255, 0.95)"
+      },
+      "hiwToAboutGap": 0,
+      "aboutToFooterGap": 0
+    },
+    "about_details": {
+      "headingCount": 16,
+      "clippedHeadings": [],
+      "objectiveCardsCount": 8,
+      "clippedCards": [],
+      "sampleCards": [
+        {
+          "num": "01",
+          "title": "Historical Data Ingestion & Integrity",
+          "width": 304,
+          "height": 199,
+          "x": 40,
+          "isClipped": false
+        },
+        {
+          "num": "02",
+          "title": "Leakage-Free Preprocessing Pipeline",
+          "width": 304,
+          "height": 199,
+          "x": 360,
+          "isClipped": false
+        },
+        {
+          "num": "03",
+          "title": "Unsupervised Customer Segmentation",
+          "width": 304,
+          "height": 199,
+          "x": 680,
+          "isClipped": false
+        },
+        {
+          "num": "04",
+          "title": "Supervised Churn Risk Modeling",
+          "width": 304,
+          "height": 179,
+          "x": 40,
+          "isClipped": false
+        }
+      ],
+      "techPillsCount": 8,
+      "clippedPills": [],
+      "buttons": [
+        {
+          "text": "Preview Employee Portal",
+          "width": 243,
+          "height": 50,
+          "visible": true
+        }
+      ]
+    },
+    "navigation": {
+      "finalScrollY": 8412,
+      "aboutTopRelativeToViewport": 80,
+      "isAboutInView": true
+    }
+  },
+  "768px Tablet": {
+    "dimensions": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 16243,
+      "clientHeight": 1024,
+      "hasHorizontalOverflow": false,
+      "overflowDelta": 0,
+      "overflowingElementsCount": 0,
+      "sampleOverflowElements": []
+    },
+    "sections": {
+      "about": {
+        "id": "about",
+        "x": 0,
+        "y": 11211,
+        "width": 768,
+        "height": 4951,
+        "top": 11211,
+        "bottom": 16162,
+        "paddingTop": "96px",
+        "paddingBottom": "96px",
+        "bg": "rgb(248, 250, 252)"
+      },
+      "howItWorks": {
+        "id": "how-it-works",
+        "x": 0,
+        "y": 9147,
+        "width": 768,
+        "height": 2064,
+        "top": 9147,
+        "bottom": 11211,
+        "paddingTop": "96px",
+        "paddingBottom": "96px",
+        "bg": "rgba(255, 255, 255, 0.7)"
+      },
+      "footer": {
+        "id": "footer",
+        "x": 0,
+        "y": 16162,
+        "width": 768,
+        "height": 81,
+        "top": 16162,
+        "bottom": 16243,
+        "paddingTop": "24px",
+        "paddingBottom": "24px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      "navbar": {
+        "id": "header",
+        "x": 0,
+        "y": 8412,
+        "width": 768,
+        "height": 94,
+        "top": 8412,
+        "bottom": 8506,
+        "paddingTop": "12px",
+        "paddingBottom": "12px",
+        "bg": "rgba(255, 255, 255, 0.95)"
+      },
+      "hiwToAboutGap": 0,
+      "aboutToFooterGap": 0
+    },
+    "about_details": {
+      "headingCount": 16,
+      "clippedHeadings": [],
+      "objectiveCardsCount": 8,
+      "clippedCards": [],
+      "sampleCards": [
+        {
+          "num": "01",
+          "title": "Historical Data Ingestion & Integrity",
+          "width": 344,
+          "height": 160,
+          "x": 32,
+          "isClipped": false
+        },
+        {
+          "num": "02",
+          "title": "Leakage-Free Preprocessing Pipeline",
+          "width": 344,
+          "height": 160,
+          "x": 392,
+          "isClipped": false
+        },
+        {
+          "num": "03",
+          "title": "Unsupervised Customer Segmentation",
+          "width": 344,
+          "height": 160,
+          "x": 32,
+          "isClipped": false
+        },
+        {
+          "num": "04",
+          "title": "Supervised Churn Risk Modeling",
+          "width": 344,
+          "height": 160,
+          "x": 392,
+          "isClipped": false
+        }
+      ],
+      "techPillsCount": 8,
+      "clippedPills": [],
+      "buttons": [
+        {
+          "text": "Preview Employee Portal",
+          "width": 243,
+          "height": 50,
+          "visible": true
+        }
+      ]
+    },
+    "navigation": {
+      "finalScrollY": 11131,
+      "aboutTopRelativeToViewport": 80,
+      "isAboutInView": true
+    }
+  },
+  "390px Mobile": {
+    "dimensions": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 21580,
+      "clientHeight": 844,
+      "hasHorizontalOverflow": false,
+      "overflowDelta": 0,
+      "overflowingElementsCount": 32,
+      "sampleOverflowElements": [
+        {
+          "tag": "div",
+          "id": null,
+          "className": "absolute top-0 left-1/4 w-96",
+          "right": 482,
+          "width": 384,
+          "delta": 92
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "className": "absolute -top-10 -right-10 w-28",
+          "right": 396,
+          "width": 112,
+          "delta": 6
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "className": "absolute bottom-10 left-10 w-96",
+          "right": 424,
+          "width": 384,
+          "delta": 34
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "className": "flex items-center justify-between min-w-[700px]",
+          "right": 716,
+          "width": 700,
+          "delta": 326
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "className": "flex flex-col items-center group",
+          "right": 507,
+          "width": 117,
+          "delta": 117
+        }
+      ]
+    },
+    "sections": {
+      "about": {
+        "id": "about",
+        "x": 0,
+        "y": 14077,
+        "width": 390,
+        "height": 7357,
+        "top": 14077,
+        "bottom": 21435,
+        "paddingTop": "64px",
+        "paddingBottom": "64px",
+        "bg": "rgb(248, 250, 252)"
+      },
+      "howItWorks": {
+        "id": "how-it-works",
+        "x": 0,
+        "y": 11739,
+        "width": 390,
+        "height": 2339,
+        "top": 11739,
+        "bottom": 14077,
+        "paddingTop": "64px",
+        "paddingBottom": "64px",
+        "bg": "rgba(255, 255, 255, 0.7)"
+      },
+      "footer": {
+        "id": "footer",
+        "x": 0,
+        "y": 21435,
+        "width": 390,
+        "height": 145,
+        "top": 21435,
+        "bottom": 21580,
+        "paddingTop": "24px",
+        "paddingBottom": "24px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      "navbar": {
+        "id": "header",
+        "x": 0,
+        "y": 10961,
+        "width": 390,
+        "height": 73,
+        "top": 10961,
+        "bottom": 11034,
+        "paddingTop": "12px",
+        "paddingBottom": "12px",
+        "bg": "rgba(255, 255, 255, 0.95)"
+      },
+      "hiwToAboutGap": 0,
+      "aboutToFooterGap": 0
+    },
+    "about_details": {
+      "headingCount": 16,
+      "clippedHeadings": [],
+      "objectiveCardsCount": 8,
+      "clippedCards": [],
+      "sampleCards": [
+        {
+          "num": "01",
+          "title": "Historical Data Ingestion & Integrity",
+          "width": 358,
+          "height": 152,
+          "x": 16,
+          "isClipped": false
+        },
+        {
+          "num": "02",
+          "title": "Leakage-Free Preprocessing Pipeline",
+          "width": 358,
+          "height": 152,
+          "x": 16,
+          "isClipped": false
+        },
+        {
+          "num": "03",
+          "title": "Unsupervised Customer Segmentation",
+          "width": 358,
+          "height": 152,
+          "x": 16,
+          "isClipped": false
+        },
+        {
+          "num": "04",
+          "title": "Supervised Churn Risk Modeling",
+          "width": 358,
+          "height": 152,
+          "x": 16,
+          "isClipped": false
+        }
+      ],
+      "techPillsCount": 8,
+      "clippedPills": [],
+      "buttons": [
+        {
+          "text": "Preview Employee Portal",
+          "width": 243,
+          "height": 50,
+          "visible": true
+        }
+      ]
+    },
+    "navigation": {
+      "finalScrollY": 13997,
+      "aboutTopRelativeToViewport": 80,
+      "isAboutInView": true
+    }
+  }
+}

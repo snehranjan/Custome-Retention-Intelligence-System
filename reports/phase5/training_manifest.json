@@ -1,0 +1,409 @@
+{
+  "metadata": {
+    "title": "Phase 5 Model Training & Cross-Validation Manifest",
+    "generation_timestamp": "2026-11-19 14:12:59",
+    "environment": {
+      "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "scikit_learn_version": "1.9.1",
+      "pandas_version": "3.1.1",
+      "numpy_version": "2.0.2",
+      "joblib_version": "1.6.0"
+    },
+    "training_dataset": {
+      "path": "data\\modeling\\train.csv",
+      "row_count": 4900,
+      "class_distribution": {
+        "0_retained": 2655,
+        "1_churned": 2245,
+        "retained_pct": 54.18,
+        "churned_pct": 45.82
+      }
+    },
+    "cross_validation_configuration": {
+      "method": "StratifiedKFold",
+      "n_splits": 5,
+      "shuffle": true,
+      "random_state": 42,
+      "positive_class": "churn=1"
+    }
+  },
+  "feature_configurations": {
+    "configuration_a": {
+      "name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "categorical_features": [
+        "city",
+        "state"
+      ],
+      "numerical_features": [
+        "customer_tenure_days",
+        "has_historical_orders",
+        "recency_days",
+        "recency_delivered_days",
+        "has_delivered_order",
+        "hist_order_count",
+        "hist_delivered_order_count",
+        "hist_returned_order_count",
+        "hist_cancelled_order_count",
+        "hist_total_order_value_inr",
+        "hist_delivered_order_value_inr",
+        "hist_total_recorded_discount_inr",
+        "hist_average_order_value_inr",
+        "orders_last_30_days",
+        "orders_last_90_days",
+        "orders_last_180_days",
+        "delivered_orders_last_30_days",
+        "delivered_orders_last_90_days",
+        "delivered_orders_last_180_days",
+        "hist_return_rate",
+        "hist_cancellation_rate",
+        "hist_average_delivery_delay_days",
+        "hist_delivery_delay_missing_count",
+        "hist_delivery_delay_missing_rate",
+        "hist_average_discount_amount_inr",
+        "hist_discounted_order_count",
+        "hist_discount_missing_count",
+        "hist_discount_missing_rate",
+        "hist_payment_missing_count",
+        "hist_payment_missing_rate",
+        "hist_cod_order_count",
+        "hist_cod_usage_rate",
+        "hist_upi_order_count",
+        "hist_upi_usage_rate"
+      ]
+    },
+    "configuration_b": {
+      "name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "categorical_features": [
+        "city",
+        "state",
+        "cluster_id"
+      ],
+      "numerical_features": [
+        "customer_tenure_days",
+        "has_historical_orders",
+        "recency_days",
+        "recency_delivered_days",
+        "has_delivered_order",
+        "hist_order_count",
+        "hist_delivered_order_count",
+        "hist_returned_order_count",
+        "hist_cancelled_order_count",
+        "hist_total_order_value_inr",
+        "hist_delivered_order_value_inr",
+        "hist_total_recorded_discount_inr",
+        "hist_average_order_value_inr",
+        "orders_last_30_days",
+        "orders_last_90_days",
+        "orders_last_180_days",
+        "delivered_orders_last_30_days",
+        "delivered_orders_last_90_days",
+        "delivered_orders_last_180_days",
+        "hist_return_rate",
+        "hist_cancellation_rate",
+        "hist_average_delivery_delay_days",
+        "hist_delivery_delay_missing_count",
+        "hist_delivery_delay_missing_rate",
+        "hist_average_discount_amount_inr",
+        "hist_discounted_order_count",
+        "hist_discount_missing_count",
+        "hist_discount_missing_rate",
+        "hist_payment_missing_count",
+        "hist_payment_missing_rate",
+        "hist_cod_order_count",
+        "hist_cod_usage_rate",
+        "hist_upi_order_count",
+        "hist_upi_usage_rate"
+      ]
+    }
+  },
+  "preprocessing_design": {
+    "scaled_models": {
+      "models": [
+        "Logistic Regression"
+      ],
+      "numerical_pipeline": "SimpleImputer(strategy='median', add_indicator=True) -> StandardScaler()",
+      "categorical_pipeline": "SimpleImputer(strategy='most_frequent') -> OneHotEncoder(handle_unknown='ignore', sparse_output=False)"
+    },
+    "tree_models": {
+      "models": [
+        "Decision Tree",
+        "Random Forest",
+        "Gradient Boosting"
+      ],
+      "numerical_pipeline": "SimpleImputer(strategy='median', add_indicator=True)",
+      "categorical_pipeline": "SimpleImputer(strategy='most_frequent') -> OneHotEncoder(handle_unknown='ignore', sparse_output=False)"
+    }
+  },
+  "models_summary": {
+    "logistic_regression_config_a": {
+      "model_key": "logistic_regression",
+      "model_name": "Logistic Regression",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "accuracy_mean": 0.6961,
+      "accuracy_std": 0.0135,
+      "precision_mean": 0.6867,
+      "precision_std": 0.0134,
+      "recall_mean": 0.6192,
+      "recall_std": 0.0303,
+      "f1_mean": 0.6509,
+      "f1_std": 0.0206,
+      "roc_auc_mean": 0.7688,
+      "roc_auc_std": 0.0152,
+      "pr_auc_mean": 0.7324,
+      "pr_auc_std": 0.0152,
+      "balanced_accuracy_mean": 0.6902,
+      "balanced_accuracy_std": 0.0146,
+      "hyperparameters": {
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "random_state": 42
+      }
+    },
+    "logistic_regression_config_b": {
+      "model_key": "logistic_regression",
+      "model_name": "Logistic Regression",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "accuracy_mean": 0.6951,
+      "accuracy_std": 0.0116,
+      "precision_mean": 0.6822,
+      "precision_std": 0.0149,
+      "recall_mean": 0.6272,
+      "recall_std": 0.03,
+      "f1_mean": 0.6531,
+      "f1_std": 0.0175,
+      "roc_auc_mean": 0.7695,
+      "roc_auc_std": 0.0143,
+      "pr_auc_mean": 0.7328,
+      "pr_auc_std": 0.0139,
+      "balanced_accuracy_mean": 0.6899,
+      "balanced_accuracy_std": 0.0123,
+      "hyperparameters": {
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "random_state": 42
+      }
+    },
+    "decision_tree_config_a": {
+      "model_key": "decision_tree",
+      "model_name": "Decision Tree",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "accuracy_mean": 0.6816,
+      "accuracy_std": 0.0131,
+      "precision_mean": 0.6694,
+      "precision_std": 0.0285,
+      "recall_mean": 0.6116,
+      "recall_std": 0.0635,
+      "f1_mean": 0.6362,
+      "f1_std": 0.0276,
+      "roc_auc_mean": 0.7334,
+      "roc_auc_std": 0.0137,
+      "pr_auc_mean": 0.6706,
+      "pr_auc_std": 0.0147,
+      "balanced_accuracy_mean": 0.6762,
+      "balanced_accuracy_std": 0.0139,
+      "hyperparameters": {
+        "criterion": "gini",
+        "max_depth": 8,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "random_state": 42
+      }
+    },
+    "decision_tree_config_b": {
+      "model_key": "decision_tree",
+      "model_name": "Decision Tree",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "accuracy_mean": 0.6798,
+      "accuracy_std": 0.0115,
+      "precision_mean": 0.667,
+      "precision_std": 0.029,
+      "recall_mean": 0.6111,
+      "recall_std": 0.0651,
+      "f1_mean": 0.6347,
+      "f1_std": 0.0264,
+      "roc_auc_mean": 0.7311,
+      "roc_auc_std": 0.0156,
+      "pr_auc_mean": 0.6707,
+      "pr_auc_std": 0.018,
+      "balanced_accuracy_mean": 0.6745,
+      "balanced_accuracy_std": 0.0121,
+      "hyperparameters": {
+        "criterion": "gini",
+        "max_depth": 8,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "random_state": 42
+      }
+    },
+    "random_forest_config_a": {
+      "model_key": "random_forest",
+      "model_name": "Random Forest",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "accuracy_mean": 0.7004,
+      "accuracy_std": 0.0146,
+      "precision_mean": 0.6859,
+      "precision_std": 0.0152,
+      "recall_mean": 0.6383,
+      "recall_std": 0.025,
+      "f1_mean": 0.6611,
+      "f1_std": 0.0191,
+      "roc_auc_mean": 0.7731,
+      "roc_auc_std": 0.0226,
+      "pr_auc_mean": 0.7386,
+      "pr_auc_std": 0.0236,
+      "balanced_accuracy_mean": 0.6956,
+      "balanced_accuracy_std": 0.0152,
+      "hyperparameters": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_split": 5,
+        "min_samples_leaf": 2,
+        "max_features": "sqrt",
+        "n_jobs": -1,
+        "random_state": 42
+      }
+    },
+    "random_forest_config_b": {
+      "model_key": "random_forest",
+      "model_name": "Random Forest",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "accuracy_mean": 0.7073,
+      "accuracy_std": 0.018,
+      "precision_mean": 0.6936,
+      "precision_std": 0.0167,
+      "recall_mean": 0.6463,
+      "recall_std": 0.0321,
+      "f1_mean": 0.669,
+      "f1_std": 0.0244,
+      "roc_auc_mean": 0.7742,
+      "roc_auc_std": 0.0221,
+      "pr_auc_mean": 0.7408,
+      "pr_auc_std": 0.0233,
+      "balanced_accuracy_mean": 0.7026,
+      "balanced_accuracy_std": 0.019,
+      "hyperparameters": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_split": 5,
+        "min_samples_leaf": 2,
+        "max_features": "sqrt",
+        "n_jobs": -1,
+        "random_state": 42
+      }
+    },
+    "gradient_boosting_config_a": {
+      "model_key": "gradient_boosting",
+      "model_name": "Gradient Boosting",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "accuracy_mean": 0.7188,
+      "accuracy_std": 0.0161,
+      "precision_mean": 0.7094,
+      "precision_std": 0.0162,
+      "recall_mean": 0.6543,
+      "recall_std": 0.0377,
+      "f1_mean": 0.6803,
+      "f1_std": 0.0232,
+      "roc_auc_mean": 0.7823,
+      "roc_auc_std": 0.0199,
+      "pr_auc_mean": 0.7482,
+      "pr_auc_std": 0.0217,
+      "balanced_accuracy_mean": 0.7138,
+      "balanced_accuracy_std": 0.0173,
+      "hyperparameters": {
+        "n_estimators": 150,
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_split": 5,
+        "min_samples_leaf": 3,
+        "random_state": 42
+      }
+    },
+    "gradient_boosting_config_b": {
+      "model_key": "gradient_boosting",
+      "model_name": "Gradient Boosting",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "accuracy_mean": 0.7194,
+      "accuracy_std": 0.0162,
+      "precision_mean": 0.7101,
+      "precision_std": 0.0167,
+      "recall_mean": 0.6552,
+      "recall_std": 0.0372,
+      "f1_mean": 0.681,
+      "f1_std": 0.023,
+      "roc_auc_mean": 0.7825,
+      "roc_auc_std": 0.0195,
+      "pr_auc_mean": 0.7484,
+      "pr_auc_std": 0.0208,
+      "balanced_accuracy_mean": 0.7144,
+      "balanced_accuracy_std": 0.0174,
+      "hyperparameters": {
+        "n_estimators": 150,
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_split": 5,
+        "min_samples_leaf": 3,
+        "random_state": 42
+      }
+    }
+  },
+  "saved_artifacts": {
+    "logistic_regression_config_a": {
+      "artifact_path": "models\\phase5\\logistic_regression_config_a.joblib",
+      "file_size_kb": 9.1,
+      "fit_time_sec": 0.06
+    },
+    "logistic_regression_config_b": {
+      "artifact_path": "models\\phase5\\logistic_regression_config_b.joblib",
+      "file_size_kb": 9.4,
+      "fit_time_sec": 0.06
+    },
+    "decision_tree_config_a": {
+      "artifact_path": "models\\phase5\\decision_tree_config_a.joblib",
+      "file_size_kb": 27.3,
+      "fit_time_sec": 0.09
+    },
+    "decision_tree_config_b": {
+      "artifact_path": "models\\phase5\\decision_tree_config_b.joblib",
+      "file_size_kb": 27.6,
+      "fit_time_sec": 0.06
+    },
+    "random_forest_config_a": {
+      "artifact_path": "models\\phase5\\random_forest_config_a.joblib",
+      "file_size_kb": 31577.5,
+      "fit_time_sec": 0.72
+    },
+    "random_forest_config_b": {
+      "artifact_path": "models\\phase5\\random_forest_config_b.joblib",
+      "file_size_kb": 31475.3,
+      "fit_time_sec": 0.67
+    },
+    "gradient_boosting_config_a": {
+      "artifact_path": "models\\phase5\\gradient_boosting_config_a.joblib",
+      "file_size_kb": 202.1,
+      "fit_time_sec": 2.82
+    },
+    "gradient_boosting_config_b": {
+      "artifact_path": "models\\phase5\\gradient_boosting_config_b.joblib",
+      "file_size_kb": 202.1,
+      "fit_time_sec": 2.89
+    }
+  }
+}

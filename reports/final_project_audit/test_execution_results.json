@@ -1,0 +1,182 @@
+{
+  "audit_timestamp": "2026-11-19T17:15:00",
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "virtual_environment": "C:\\customer churn retention system\\backend\\.venv",
+    "node_version": "v25.2.1",
+    "npm_version": "11.6.2"
+  },
+  "master_pytest_summary": {
+    "test_suite_file": "tests/test_all_phases.py",
+    "total_tests_executed": 10,
+    "tests_passed": 10,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "duration_seconds": 12.03,
+    "overall_status": "ALL_TESTS_PASSED"
+  },
+  "phase_validation_suites": [
+    {
+      "phase": "Phase 1",
+      "suite_file": "backend/ml/validate_data.py",
+      "total_checks": 10,
+      "checks_passed": 10,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "7,000 unique customer records",
+        "84,225 unique order records",
+        "Zero foreign-key orphan orders",
+        "Historical partition <= 2025-12-31 (72,240 orders)",
+        "Future window 2026-01-01 to 2026-03-31 (11,985 orders)",
+        "Ground-truth churn matches future activity"
+      ]
+    },
+    {
+      "phase": "Phase 3",
+      "suite_file": "backend/ml/validate_features.py",
+      "total_checks": 23,
+      "checks_passed": 23,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "7,000 rows x 40 feature matrix columns",
+        "36 predictive features bounded correctly",
+        "Zero-history accounts handled cleanly (148 customers)",
+        "Future order perturbation test passed (0.000000 divergence)",
+        "Target separation test passed (0.000000 divergence)",
+        "Rolling velocity windows strictly bounded by 2025-12-31"
+      ]
+    },
+    {
+      "phase": "Phase 4",
+      "suite_file": "backend/ml/validate_segmentation.py",
+      "total_checks": 26,
+      "checks_passed": 26,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "K-Means clustering with K=5 on normalized RFM features",
+        "Zero-delivered accounts isolated in Cluster 2 with 100% purity (N=484)",
+        "Customer-level friction averages verified without pooled conflation",
+        "Pairwise seed stability ARI = 0.9931 (>= 0.95)",
+        "All 6 publication-grade figures verified in reports/figures"
+      ]
+    },
+    {
+      "phase": "Phase 5",
+      "suite_file": "backend/ml/validate_modeling_data.py",
+      "total_checks": 20,
+      "checks_passed": 20,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "Stratified splits: 4,900 Train / 1,050 Validation / 1,050 Test",
+        "Zero customer ID overlap across partitions",
+        "Config A (36) and Config B (37) feature schemas documented",
+        "Target stratification preserved (~45.81% churn across all splits)",
+        "Split reproducibility seed=42 verified"
+      ]
+    },
+    {
+      "phase": "Phase 5",
+      "suite_file": "backend/ml/validate_training.py",
+      "total_checks": 20,
+      "checks_passed": 20,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "8 model artifacts trained and saved in models/phase5",
+        "Preprocessing fit strictly on training splits",
+        "5-fold CV metrics bounded in [0.0, 1.0]",
+        "All models support probability estimation via predict_proba()",
+        "Validation and test sets remained completely untouched on disk"
+      ]
+    },
+    {
+      "phase": "Phase 5",
+      "suite_file": "backend/ml/validate_final_model.py",
+      "total_checks": 18,
+      "checks_passed": 18,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "Phase 5 baseline Logistic Regression Config B pipeline locked",
+        "Decision threshold strictly locked at 0.46",
+        "Test metrics reconcile with confusion matrix (1,050 test records)",
+        "Deterministic prediction reproducibility verified"
+      ]
+    },
+    {
+      "phase": "Phase 5.1 Checkpoint 2",
+      "suite_file": "backend/ml/validate_independent_cohort.py",
+      "total_checks": 14,
+      "checks_passed": 14,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "1,500 unique independent customer records (IND_CUST_50001..51500)",
+        "17,585 orders starting at ORD_500001",
+        "Complete set disjointness against Phase 1 raw data (0 ID overlaps)",
+        "Ground-truth churn consistency verified with future orders",
+        "Cryptographic SHA-256 hashes verified against manifest"
+      ]
+    },
+    {
+      "phase": "Phase 5.1 Checkpoint 2.1 & 2.2",
+      "suite_file": "backend/ml/validate_advanced_features.py",
+      "total_checks": 5,
+      "checks_passed": 5,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "Velocity momentum ratios (R30/90, R90/180) and zero-baseline NaN handling",
+        "Customer friction index and missingness propagation",
+        "Log1pTransformer validation and NaN preservation",
+        "CorrelationPruner target-aware filtering and protected column shielding",
+        "Full scikit-learn pipeline fits and transforms seamlessly without leakage"
+      ]
+    },
+    {
+      "phase": "Phase 5.1 Checkpoint 3 & 3.1",
+      "suite_file": "backend/ml/validate_checkpoint3.py",
+      "total_checks": 12,
+      "checks_passed": 12,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "5x3 nested cross-validation executed on 5,950 development records",
+        "Zero historical or independent test IDs in OOF predictions",
+        "Feature name mapping aligns 1:1 with 73 transformed features",
+        "62 threshold increments evaluated cleanly (0.20 to 0.81)",
+        "Selected candidate random_forest_config_d reloads cleanly"
+      ]
+    },
+    {
+      "phase": "Phase 5.1 Checkpoint 4",
+      "suite_file": "backend/ml/validate_final_ml.py",
+      "total_checks": 12,
+      "checks_passed": 12,
+      "checks_failed": 0,
+      "status": "PASSED",
+      "key_invariants_verified": [
+        "Model locked (SHA-256: 24F1F0E33C75B5590906369960DB6E5951EC95DF9AE40384DA60082B3438F301)",
+        "Pre-locked decision threshold 0.50 strictly enforced",
+        "1,500 independent predictions generated with zero post-hoc tuning",
+        "Confusion matrix (TN=571, FP=258, FN=208, TP=463) perfectly reconciles",
+        "All reported metrics reconcile mathematically",
+        "Single-customer live inference verified with production artifact"
+      ]
+    }
+  ],
+  "static_analysis": {
+    "python_syntax_errors": 0,
+    "security_credentials_exposed": 0,
+    "hardcoded_predictions_found": 0
+  },
+  "total_individual_assertions_evaluated": 160,
+  "total_assertions_passed": 160,
+  "total_assertions_failed": 0,
+  "pass_rate_pct": 100.0
+}

@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "title": "Phase 5 Checkpoint 4 Hyperparameter Search & Tuning Manifest",
+    "generation_timestamp": "2026-11-19 14:25:29",
+    "training_dataset": "data\\modeling\\train.csv",
+    "training_rows": 4900,
+    "tuning_objective": "f1_score",
+    "cross_validation": "5-fold StratifiedKFold (random_state=42)"
+  },
+  "search_results": {
+    "logistic_regression_config_a": {
+      "model_key": "logistic_regression",
+      "model_name": "Logistic Regression",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "search_type": "grid",
+      "search_duration_sec": 6.0,
+      "best_cv_f1": 0.6853,
+      "best_parameters": {
+        "C": 0.01,
+        "class_weight": "balanced",
+        "max_iter": 2000,
+        "random_state": 42,
+        "solver": "lbfgs"
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7014,
+        "precision": 0.6625,
+        "recall": 0.7105,
+        "f1": 0.6853,
+        "roc_auc": 0.7714,
+        "average_precision": 0.7316,
+        "balanced_accuracy": 0.7021
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0069,
+        "precision": 0.0071,
+        "recall": 0.0275,
+        "f1": 0.0123,
+        "roc_auc": 0.0138,
+        "average_precision": 0.0136,
+        "balanced_accuracy": 0.0079
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7048,
+        "precision": 0.6635,
+        "recall": 0.7214,
+        "f1_score": 0.6912,
+        "roc_auc": 0.782,
+        "average_precision": 0.7372,
+        "balanced_accuracy": 0.706,
+        "specificity": 0.6907,
+        "confusion_matrix": {
+          "tp": 347,
+          "fp": 176,
+          "tn": 393,
+          "fn": 134
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\logistic_regression_config_a_tuned.joblib",
+      "file_size_kb": 9.2
+    },
+    "logistic_regression_config_b": {
+      "model_key": "logistic_regression",
+      "model_name": "Logistic Regression",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "search_type": "grid",
+      "search_duration_sec": 1.38,
+      "best_cv_f1": 0.6842,
+      "best_parameters": {
+        "C": 0.01,
+        "class_weight": "balanced",
+        "max_iter": 2000,
+        "random_state": 42,
+        "solver": "lbfgs"
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7027,
+        "precision": 0.6663,
+        "recall": 0.7038,
+        "f1": 0.6842,
+        "roc_auc": 0.7719,
+        "average_precision": 0.7323,
+        "balanced_accuracy": 0.7027
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0082,
+        "precision": 0.0091,
+        "recall": 0.0283,
+        "f1": 0.0131,
+        "roc_auc": 0.0131,
+        "average_precision": 0.0132,
+        "balanced_accuracy": 0.0091
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7105,
+        "precision": 0.6679,
+        "recall": 0.7318,
+        "f1_score": 0.6984,
+        "roc_auc": 0.7832,
+        "average_precision": 0.7391,
+        "balanced_accuracy": 0.7121,
+        "specificity": 0.6924,
+        "confusion_matrix": {
+          "tp": 352,
+          "fp": 175,
+          "tn": 394,
+          "fn": 129
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\logistic_regression_config_b_tuned.joblib",
+      "file_size_kb": 9.4
+    },
+    "decision_tree_config_a": {
+      "model_key": "decision_tree",
+      "model_name": "Decision Tree",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "search_type": "grid",
+      "search_duration_sec": 6.16,
+      "best_cv_f1": 0.6862,
+      "best_parameters": {
+        "criterion": "gini",
+        "max_depth": 4,
+        "min_samples_leaf": 5,
+        "min_samples_split": 5,
+        "random_state": 42
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7108,
+        "precision": 0.682,
+        "recall": 0.6913,
+        "f1": 0.6862,
+        "roc_auc": 0.7728,
+        "average_precision": 0.7082,
+        "balanced_accuracy": 0.7093
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0132,
+        "precision": 0.0126,
+        "recall": 0.0343,
+        "f1": 0.0194,
+        "roc_auc": 0.0219,
+        "average_precision": 0.0253,
+        "balanced_accuracy": 0.0143
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6686,
+        "recall": 0.7214,
+        "f1_score": 0.694,
+        "roc_auc": 0.7726,
+        "average_precision": 0.7017,
+        "balanced_accuracy": 0.7096,
+        "specificity": 0.6977,
+        "confusion_matrix": {
+          "tp": 347,
+          "fp": 172,
+          "tn": 397,
+          "fn": 134
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\decision_tree_config_a_tuned.joblib",
+      "file_size_kb": 10.0
+    },
+    "decision_tree_config_b": {
+      "model_key": "decision_tree",
+      "model_name": "Decision Tree",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "search_type": "grid",
+      "search_duration_sec": 6.12,
+      "best_cv_f1": 0.6862,
+      "best_parameters": {
+        "criterion": "gini",
+        "max_depth": 4,
+        "min_samples_leaf": 5,
+        "min_samples_split": 5,
+        "random_state": 42
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.711,
+        "precision": 0.6824,
+        "recall": 0.6909,
+        "f1": 0.6862,
+        "roc_auc": 0.7731,
+        "average_precision": 0.7084,
+        "balanced_accuracy": 0.7095
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0134,
+        "precision": 0.0128,
+        "recall": 0.0337,
+        "f1": 0.0194,
+        "roc_auc": 0.0222,
+        "average_precision": 0.0255,
+        "balanced_accuracy": 0.0145
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6686,
+        "recall": 0.7214,
+        "f1_score": 0.694,
+        "roc_auc": 0.7726,
+        "average_precision": 0.7017,
+        "balanced_accuracy": 0.7096,
+        "specificity": 0.6977,
+        "confusion_matrix": {
+          "tp": 347,
+          "fp": 172,
+          "tn": 397,
+          "fn": 134
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\decision_tree_config_b_tuned.joblib",
+      "file_size_kb": 10.2
+    },
+    "random_forest_config_a": {
+      "model_key": "random_forest",
+      "model_name": "Random Forest",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "search_type": "randomized",
+      "search_duration_sec": 45.74,
+      "best_cv_f1": 0.6855,
+      "best_parameters": {
+        "random_state": 42,
+        "n_estimators": 400,
+        "min_samples_split": 5,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "max_depth": 10,
+        "class_weight": "balanced"
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7057,
+        "precision": 0.6713,
+        "recall": 0.7007,
+        "f1": 0.6855,
+        "roc_auc": 0.7786,
+        "average_precision": 0.743,
+        "balanced_accuracy": 0.7053
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0119,
+        "precision": 0.0108,
+        "recall": 0.0238,
+        "f1": 0.0155,
+        "roc_auc": 0.0209,
+        "average_precision": 0.0236,
+        "balanced_accuracy": 0.0126
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6692,
+        "recall": 0.7193,
+        "f1_score": 0.6934,
+        "roc_auc": 0.7846,
+        "average_precision": 0.745,
+        "balanced_accuracy": 0.7094,
+        "specificity": 0.6995,
+        "confusion_matrix": {
+          "tp": 346,
+          "fp": 171,
+          "tn": 398,
+          "fn": 135
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\random_forest_config_a_tuned.joblib",
+      "file_size_kb": 13871.2
+    },
+    "random_forest_config_b": {
+      "model_key": "random_forest",
+      "model_name": "Random Forest",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "search_type": "randomized",
+      "search_duration_sec": 46.09,
+      "best_cv_f1": 0.683,
+      "best_parameters": {
+        "random_state": 42,
+        "n_estimators": 300,
+        "min_samples_split": 2,
+        "min_samples_leaf": 4,
+        "max_features": "log2",
+        "max_depth": 20,
+        "class_weight": "balanced"
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7037,
+        "precision": 0.6694,
+        "recall": 0.6976,
+        "f1": 0.683,
+        "roc_auc": 0.777,
+        "average_precision": 0.7431,
+        "balanced_accuracy": 0.7032
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0126,
+        "precision": 0.0102,
+        "recall": 0.0292,
+        "f1": 0.0176,
+        "roc_auc": 0.0199,
+        "average_precision": 0.0212,
+        "balanced_accuracy": 0.0137
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6686,
+        "recall": 0.7214,
+        "f1_score": 0.694,
+        "roc_auc": 0.7791,
+        "average_precision": 0.7429,
+        "balanced_accuracy": 0.7096,
+        "specificity": 0.6977,
+        "confusion_matrix": {
+          "tp": 347,
+          "fp": 172,
+          "tn": 397,
+          "fn": 134
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\random_forest_config_b_tuned.joblib",
+      "file_size_kb": 18683.9
+    },
+    "gradient_boosting_config_a": {
+      "model_key": "gradient_boosting",
+      "model_name": "Gradient Boosting",
+      "config_key": "config_a",
+      "config_name": "Configuration A (Baseline 36 Features)",
+      "feature_count": 36,
+      "search_type": "randomized",
+      "search_duration_sec": 48.29,
+      "best_cv_f1": 0.6874,
+      "best_parameters": {
+        "random_state": 42,
+        "n_estimators": 150,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "max_depth": 2,
+        "learning_rate": 0.03
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7167,
+        "precision": 0.6948,
+        "recall": 0.6806,
+        "f1": 0.6874,
+        "roc_auc": 0.7808,
+        "average_precision": 0.7461,
+        "balanced_accuracy": 0.7139
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0148,
+        "precision": 0.0142,
+        "recall": 0.0299,
+        "f1": 0.0196,
+        "roc_auc": 0.0198,
+        "average_precision": 0.0241,
+        "balanced_accuracy": 0.0157
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6712,
+        "recall": 0.7131,
+        "f1_score": 0.6915,
+        "roc_auc": 0.7904,
+        "average_precision": 0.7564,
+        "balanced_accuracy": 0.7089,
+        "specificity": 0.7047,
+        "confusion_matrix": {
+          "tp": 343,
+          "fp": 168,
+          "tn": 401,
+          "fn": 138
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\gradient_boosting_config_a_tuned.joblib",
+      "file_size_kb": 124.2
+    },
+    "gradient_boosting_config_b": {
+      "model_key": "gradient_boosting",
+      "model_name": "Gradient Boosting",
+      "config_key": "config_b",
+      "config_name": "Configuration B (36 Features + RFM cluster_id)",
+      "feature_count": 37,
+      "search_type": "randomized",
+      "search_duration_sec": 50.93,
+      "best_cv_f1": 0.6874,
+      "best_parameters": {
+        "random_state": 42,
+        "n_estimators": 150,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "max_depth": 2,
+        "learning_rate": 0.03
+      },
+      "cv_metrics_mean": {
+        "accuracy": 0.7167,
+        "precision": 0.6948,
+        "recall": 0.6806,
+        "f1": 0.6874,
+        "roc_auc": 0.7808,
+        "average_precision": 0.7465,
+        "balanced_accuracy": 0.7139
+      },
+      "cv_metrics_std": {
+        "accuracy": 0.0148,
+        "precision": 0.0142,
+        "recall": 0.0299,
+        "f1": 0.0196,
+        "roc_auc": 0.0199,
+        "average_precision": 0.0243,
+        "balanced_accuracy": 0.0157
+      },
+      "validation_at_0_50": {
+        "accuracy": 0.7086,
+        "precision": 0.6712,
+        "recall": 0.7131,
+        "f1_score": 0.6915,
+        "roc_auc": 0.7904,
+        "average_precision": 0.7564,
+        "balanced_accuracy": 0.7089,
+        "specificity": 0.7047,
+        "confusion_matrix": {
+          "tp": 343,
+          "fp": 168,
+          "tn": 401,
+          "fn": 138
+        }
+      },
+      "artifact_path": "models\\phase5\\tuned\\gradient_boosting_config_b_tuned.joblib",
+      "file_size_kb": 124.5
+    }
+  }
+}

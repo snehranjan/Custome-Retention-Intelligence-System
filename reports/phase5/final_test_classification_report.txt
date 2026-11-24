@@ -1,0 +1,22 @@
+Indian E-Commerce Customer Retention Intelligence System
+Phase 5: Checkpoint 5 — Final Test Set Classification Report
+Model: Logistic Regression Configuration B (Tuned & Refitted)
+Decision Threshold: 0.46
+Test Records: 1050
+============================================================
+
+                    precision    recall  f1-score   support
+
+Retained (Class 0)     0.7372    0.6063    0.6654       569
+ Churned (Class 1)     0.6151    0.7443    0.6736       481
+
+          accuracy                         0.6695      1050
+         macro avg     0.6761    0.6753    0.6695      1050
+      weighted avg     0.6813    0.6695    0.6691      1050
+
+
+Confusion Matrix:
+  TN=345, FP=224, FN=123, TP=358
+  Specificity = 0.6063, FPR = 0.3937, FNR = 0.2557
+  ROC-AUC = 0.7491, Average Precision = 0.7146
+  Diagnostic Brier Score = 0.2038

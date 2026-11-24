@@ -1,0 +1,267 @@
+{
+  "project_name": "Indian E-Commerce Customer Retention Intelligence System Using Machine Learning",
+  "phase": "Phase 5.1 — Advanced Model Optimization & Accuracy Improvement",
+  "checkpoint": "Checkpoint 1.1 — Audit Corrections & Evaluation Protocol Verification",
+  "created_at": "2026-11-19T15:40:00+05:30",
+  "status": "APPROVED_METHODOLOGY_VERIFIED",
+  "author": "Senior Machine Learning Engineer and Independent Technical Auditor",
+  "objective": {
+    "goal": "Improve model generalization accuracy towards an aspirational 80% target through evidence-based feature engineering and algorithm benchmarking while maintaining minimum recall >= 70%.",
+    "disclaimer": "80% accuracy is an aspirational upper bound. Ground-truth label generation contains an intrinsic theoretical Bayes error rate of ~26.03% due to stochastic Bernoulli trials on latent personas."
+  },
+  "verified_raw_data_invariants": {
+    "customers_file": "data/raw/customers.csv",
+    "customer_count": 7000,
+    "customer_id_format": "IND_CUST_XXXXX",
+    "customer_id_range": "IND_CUST_10001 to IND_CUST_17000 (span: 7,000 contiguous, 100% unique)",
+    "orders_file": "data/raw/orders.csv",
+    "total_orders_count": 84225,
+    "historical_orders_count": 72240,
+    "future_orders_count": 11985,
+    "order_id_format": "ORD_XXXXXX",
+    "order_id_range": "ORD_100001 to ORD_184225 (span: 84,225 contiguous, 100% unique)"
+  },
+  "historical_baseline_phase5": {
+    "model_id": "logistic_regression_config_b_tuned_refitted",
+    "algorithm": "Logistic Regression",
+    "regularization": "L2 (C=0.01)",
+    "class_weight": "balanced",
+    "features_count": 37,
+    "decision_threshold": 0.46,
+    "test_dataset": "data/modeling/test.csv (N=1,050, frozen historical benchmark)",
+    "metrics": {
+      "accuracy": 0.6695,
+      "precision": 0.6151,
+      "recall": 0.7443,
+      "f1_score": 0.6736,
+      "roc_auc": 0.7491,
+      "average_precision": 0.7146,
+      "specificity": 0.6063,
+      "brier_score_loss": 0.2038
+    },
+    "confusion_matrix": {
+      "true_positives": 358,
+      "false_positives": 224,
+      "true_negatives": 345,
+      "false_negatives": 123,
+      "total": 1050
+    }
+  },
+  "data_boundaries": {
+    "historical_development_cohort": {
+      "path": "data/modeling/modeling_dataset.csv (train.csv N=4,900 + validation.csv N=1,050)",
+      "total_records": 5950,
+      "role": "Nested Stratified Cross-Validation (outer fold OOF probability collection, inner fold tuning, pipeline selection)"
+    },
+    "historical_phase5_test_set": {
+      "path": "data/modeling/test.csv",
+      "total_records": 1050,
+      "role": "FROZEN_BENCHMARK — Strictly prohibited from use in model selection, tuning, or threshold setting"
+    },
+    "proposed_independent_test_cohort": {
+      "planned_path": "data/independent_test/raw/",
+      "target_records": 1500,
+      "random_seed": 2026,
+      "customer_id_start": 50001,
+      "order_id_start": 500001,
+      "snapshot_date": "2025-12-31",
+      "future_window_days": 90,
+      "collision_verification": "Strict set disjointness assertion: assert len(set(new_ids).intersection(set(existing_ids))) == 0",
+      "role": "SEALED_OUT_OF_SAMPLE_COHORT — Evaluated exactly once at Phase 5.1 completion"
+    }
+  },
+  "cross_validation_methodology": {
+    "design": "Nested Stratified Cross-Validation",
+    "outer_loop": {
+      "folds": 5,
+      "purpose": "Generate unbiased out-of-fold (OOF) predicted probabilities across all N=5,950 records for decision threshold selection without hyperparameter-selection bias.",
+      "holdout_per_fold": 1190
+    },
+    "inner_loop": {
+      "folds": 3,
+      "purpose": "Tune candidate hyperparameters and evaluate pipeline variations strictly on outer training folds (N=4,760).",
+      "leakage_boundary": "No outer validation fold data ever informs inner tuning, scaling, encoding, or feature selection."
+    },
+    "threshold_selection": {
+      "source": "Aggregated out-of-fold probability vector from the outer 5 folds",
+      "sweep_range": [0.20, 0.80],
+      "step": 0.01,
+      "objective": "Maximize F1-score subject to mandatory constraint Recall >= 70.0%"
+    }
+  },
+  "feature_engineering_experiments": [
+    {
+      "experiment_id": "FE-01",
+      "name": "Velocity Momentum & Run-Rate Ratios",
+      "description": "Construct ratios of 30-day orders to 90-day run-rate and 90-day orders to 180-day run-rate with epsilon stabilization (+0.1) to prevent zero-division.",
+      "mathematical_formula": "velocity_ratio_30_90 = (orders_last_30_days + 0.1) / ((orders_last_90_days / 3) + 0.1)",
+      "proposed_features": [
+        "velocity_ratio_30_90",
+        "velocity_ratio_90_180",
+        "delivered_velocity_ratio_90_180"
+      ]
+    },
+    {
+      "experiment_id": "FE-02",
+      "name": "Fulfillment Friction Interaction Index",
+      "description": "Synthesize delivery delay severity with customer return and cancellation rates. Missing delay values preserved as NaN rather than fabricated as 0.",
+      "mathematical_formula": "delay_friction_score = hist_average_delivery_delay_days * (1 + hist_return_rate + hist_cancellation_rate)",
+      "proposed_features": [
+        "delay_friction_score",
+        "return_to_delivered_ratio",
+        "cancelled_to_attempted_ratio"
+      ]
+    },
+    {
+      "experiment_id": "FE-03",
+      "name": "Logarithmic Transformation of Right-Skewed Variables",
+      "description": "Apply np.log1p inside Pipeline transformers to normalize right-skewed monetary amounts and recency days.",
+      "target_features": [
+        "hist_total_order_value_inr",
+        "hist_delivered_order_value_inr",
+        "recency_days",
+        "recency_delivered_days"
+      ]
+    },
+    {
+      "experiment_id": "FE-04",
+      "name": "Empirical Multicollinearity Pruning Evaluation",
+      "description": "Evaluate pruning candidate features with |r| > 0.85 inside training folds versus retaining all features across all algorithms.",
+      "candidate_pruning": [
+        "Evaluate dropping hist_order_count in favor of hist_delivered_order_count",
+        "Evaluate dropping hist_total_order_value_inr in favor of hist_delivered_order_value_inr",
+        "Evaluate dropping recency_days in favor of recency_delivered_days",
+        "Evaluate dropping orders_last_180_days in favor of delivered_orders_last_180_days"
+      ]
+    }
+  ],
+  "candidate_algorithms": [
+    {
+      "algorithm_id": "ALG-01",
+      "name": "Logistic Regression (Advanced)",
+      "module": "sklearn.linear_model.LogisticRegression",
+      "hyperparameter_grid": {
+        "classifier__C": [0.001, 0.01, 0.1, 1.0, 10.0],
+        "classifier__penalty": ["l2"],
+        "classifier__class_weight": ["balanced", null],
+        "classifier__solver": ["lbfgs"],
+        "classifier__max_iter": [2000]
+      }
+    },
+    {
+      "algorithm_id": "ALG-02",
+      "name": "Random Forest Classifier",
+      "module": "sklearn.ensemble.RandomForestClassifier",
+      "hyperparameter_grid": {
+        "classifier__n_estimators": [300, 500],
+        "classifier__max_depth": [8, 12, 16, null],
+        "classifier__min_samples_split": [5, 10],
+        "classifier__min_samples_leaf": [2, 4, 8],
+        "classifier__max_features": ["sqrt", "log2"],
+        "classifier__class_weight": ["balanced", null]
+      }
+    },
+    {
+      "algorithm_id": "ALG-03",
+      "name": "Extra Trees Classifier",
+      "module": "sklearn.ensemble.ExtraTreesClassifier",
+      "hyperparameter_grid": {
+        "classifier__n_estimators": [300, 500],
+        "classifier__max_depth": [8, 12, 16, null],
+        "classifier__min_samples_split": [5, 10],
+        "classifier__min_samples_leaf": [2, 4, 8],
+        "classifier__max_features": ["sqrt", "log2"],
+        "classifier__class_weight": ["balanced", null]
+      }
+    },
+    {
+      "algorithm_id": "ALG-04",
+      "name": "Gradient Boosting Classifier",
+      "module": "sklearn.ensemble.GradientBoostingClassifier",
+      "hyperparameter_grid": {
+        "classifier__n_estimators": [150, 250, 400],
+        "classifier__learning_rate": [0.02, 0.05, 0.08],
+        "classifier__max_depth": [3, 4, 5],
+        "classifier__min_samples_split": [5, 10],
+        "classifier__min_samples_leaf": [3, 5],
+        "classifier__subsample": [0.8, 1.0]
+      }
+    },
+    {
+      "algorithm_id": "ALG-05",
+      "name": "HistGradientBoosting Classifier",
+      "module": "sklearn.ensemble.HistGradientBoostingClassifier",
+      "hyperparameter_grid": {
+        "classifier__max_iter": [150, 250, 400],
+        "classifier__learning_rate": [0.03, 0.05, 0.1],
+        "classifier__max_depth": [4, 6, 8],
+        "classifier__min_samples_leaf": [10, 20, 30],
+        "classifier__l2_regularization": [0.0, 0.1, 1.0],
+        "classifier__class_weight": ["balanced", null]
+      }
+    },
+    {
+      "algorithm_id": "ALG-06",
+      "name": "Stacking Classifier / Meta-Ensemble",
+      "module": "sklearn.ensemble.StackingClassifier",
+      "description": "Blends out-of-fold probability predictions from top 3 diverse estimators using an L2-regularized Logistic Regression meta-learner.",
+      "base_estimators": ["HistGradientBoosting", "Random Forest", "Logistic Regression"],
+      "final_estimator": "LogisticRegression(C=0.1, class_weight='balanced')"
+    }
+  ],
+  "evaluation_metrics": [
+    {
+      "name": "Recall (Class 1 Churn)",
+      "priority": "MANDATORY_CONSTRAINT",
+      "target": ">= 0.7000 (70.0%)",
+      "rationale": "Prevents catastrophic retention false negatives where high-value customers defect without intervention."
+    },
+    {
+      "name": "Accuracy",
+      "priority": "PRIMARY_OPTIMIZATION_METRIC",
+      "target": "Aspirational >= 0.8000 (80.0%)",
+      "rationale": "Improves overall model generalization and minimizes unnecessary retention coupon expenditures."
+    },
+    {
+      "name": "ROC-AUC",
+      "priority": "DISCRIMINATION_BENCHMARK",
+      "target": ">= 0.8000",
+      "rationale": "Measures threshold-independent ranking ability across entire customer risk spectrum."
+    },
+    {
+      "name": "Precision (Class 1 Churn)",
+      "priority": "SECONDARY_OPTIMIZATION_METRIC",
+      "target": ">= 0.6500",
+      "rationale": "Ensures retention offers are not squandered on low-risk customer accounts."
+    },
+    {
+      "name": "F1-Score",
+      "priority": "HARMONIC_BALANCE_METRIC",
+      "target": ">= 0.7000",
+      "rationale": "Guides decision threshold selection at the precision-recall trade-off point."
+    }
+  ],
+  "acceptance_criteria": {
+    "zero_leakage": "All feature engineering, scaling, and imputation transformers strictly wrapped inside Pipeline / ColumnTransformer objects fitted on training folds.",
+    "recall_constraint": "Final selected pipeline must strictly achieve test recall >= 70.0% on the independent test cohort.",
+    "independent_test_isolation": "Independent test cohort evaluated exactly once; no post-test tuning or threshold re-calibration allowed.",
+    "preservation_of_phase5": "Original models/phase5/ final pipeline and reports remain permanently intact as historical benchmark."
+  },
+  "checkpoint_1_1_verification": {
+    "churn_mechanism_verified": "Verified that churn_decision is sampled from Bernoulli(churn_propensity) and future orders are generated conditionally such that churn == 1 iff zero future orders exist in the 90-day window.",
+    "bayes_error_status": "Theoretical population expectation under generator assumptions (~26.03% error); not an unconditional empirical ceiling on finite samples.",
+    "threshold_comparison_corrected": "Cross-dataset comparison removed; within-dataset validation (FP 175 at 0.50 vs FP 219 at 0.46) and test (FP 224 at 0.46) reported cleanly.",
+    "nested_cv_established": "Outer 5 folds for unbiased OOF probability assembly, Inner 3 folds for hyperparameter tuning.",
+    "id_ranges_verified": "Customers: 7,000 records (IND_CUST_10001 to 17000); Orders: 84,225 records (ORD_100001 to 184225, 72,240 historical + 11,985 future).",
+    "collision_free_verification": "Strict set disjointness check required before saving independent test cohort.",
+    "semantic_missingness_preserved": "Missing delivery delay not imputed as 0; missing discount not assumed 0; indicators retained."
+  },
+  "milestone_roadmap": {
+    "checkpoint_1": "Project Audit & Strategy Formulation (COMPLETED)",
+    "checkpoint_1_1": "Audit Corrections & Evaluation Protocol Verification (COMPLETED)",
+    "checkpoint_2": "Independent Cohort Generation & Advanced Feature Engineering Setup",
+    "checkpoint_3": "Multi-Algorithm Pipeline Construction & Nested Stratified CV",
+    "checkpoint_4": "Hyperparameter Optimization & Decision Threshold Sweeping on OOF Probabilities",
+    "checkpoint_5": "Final Model Refit & Evaluation on Independent Test Cohort"
+  }
+}

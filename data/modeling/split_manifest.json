@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "title": "Phase 5 Dataset Splitting Manifest",
+    "generation_timestamp": "2026-11-19 13:56:51",
+    "source_dataset_path": "data\\modeling\\modeling_dataset.csv",
+    "target_name": "churn",
+    "identifier_name": "customer_id",
+    "snapshot_date": "2025-12-31",
+    "label_window": "2026-01-01 through 2026-03-31, inclusive"
+  },
+  "split_configuration": {
+    "random_state": 42,
+    "split_method": "Two-stage stratified splitting using sklearn.model_selection.train_test_split",
+    "requested_split_proportions": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "actual_split_proportions": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "total_customer_count": 7000
+  },
+  "row_counts": {
+    "train": 4900,
+    "validation": 1050,
+    "test": 1050
+  },
+  "class_distributions": {
+    "train": {
+      "0_retained_count": 2655,
+      "1_churned_count": 2245,
+      "0_retained_pct": 54.18,
+      "1_churned_pct": 45.82
+    },
+    "validation": {
+      "0_retained_count": 569,
+      "1_churned_count": 481,
+      "0_retained_pct": 54.19,
+      "1_churned_pct": 45.81
+    },
+    "test": {
+      "0_retained_count": 569,
+      "1_churned_count": 481,
+      "0_retained_pct": 54.19,
+      "1_churned_pct": 45.81
+    }
+  },
+  "feature_counts": {
+    "configuration_a_feature_count": 36,
+    "configuration_b_feature_count": 37,
+    "total_columns_per_split_file": 39
+  },
+  "disjointness_verification": {
+    "train_val_overlap": 0,
+    "train_test_overlap": 0,
+    "val_test_overlap": 0,
+    "union_matches_total": true
+  }
+}

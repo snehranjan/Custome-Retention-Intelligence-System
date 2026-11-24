@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Standard Favicon & Touch Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.svg" />
+
+    <!-- Primary Metadata -->
+    <title>RetainIQ — Customer Retention Intelligence</title>
+    <meta
+      name="description"
+      content="RetainIQ is an academic AI-powered customer retention intelligence platform predicting customer churn, segmenting RFM personas, and prescribing data-driven intervention playbooks for Indian e-commerce."
+    />
+    <meta name="theme-color" content="#0B192C" />
+
+    <!-- Open Graph / Social Media Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RetainIQ" />
+    <meta property="og:title" content="RetainIQ — Customer Retention Intelligence" />
+    <meta
+      property="og:description"
+      content="Machine learning retention intelligence system with 43-feature Random Forest inference, 5 RFM customer personas, and explainable retention playbooks."
+    />
+    <meta property="og:image" content="/favicon/favicon.svg" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RetainIQ — Customer Retention Intelligence" />
+    <meta
+      name="twitter:description"
+      content="Machine learning customer retention intelligence platform for Indian e-commerce."
+    />
+    <meta name="twitter:image" content="/favicon/favicon.svg" />
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Google Fonts: Sora (Headings), Inter (Body), JetBrains Mono (Data/Code) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Anti-Flash of Unstyled Theme Script -->
+    <script>
+      (function() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var qTheme = params.get('theme');
+          if (qTheme === 'dark' || qTheme === 'light') {
+            localStorage.setItem('retainiq-theme', qTheme);
+          }
+          var t = localStorage.getItem('retainiq-theme');
+          if (t === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-bg text-text-primary font-body antialiased selection:bg-electric selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

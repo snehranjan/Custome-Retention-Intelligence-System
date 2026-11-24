@@ -1,0 +1,42 @@
+# Virtual Environment
+.venv/
+backend/.venv/
+venv/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Node & Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Environment Variables & Secrets
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env.local
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Local SQLite Databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+data/*.db
+data/local_database.db
+
+# Model binaries & large artifacts (optional, keep raw data/models gitignore patterns)
+*.log

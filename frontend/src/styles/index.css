@@ -1,0 +1,349 @@
+/* RetainIQ Enterprise Design System */
+/* Unslopped using methodology from unslop by Damir Sokolovsky (@heydamir), CC BY 4.0 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Ink & Slate Neutral Ramp - Light */
+    --color-midnight: #0B1320;
+    --color-midnight-50: #162032;
+    --color-midnight-100: #111A29;
+    --color-midnight-900: #0B1320;
+
+    /* Functional Surfaces & Backgrounds - Light */
+    --color-bg: #F8FAFC;
+    --color-bg-alt: #F1F5F9;
+    --color-bg-subtle: #F8FAFC;
+
+    --color-surface: #FFFFFF;
+    --color-surface-muted: #F1F5F9;
+    --color-surface-card: #FFFFFF;
+    --color-surface-raised: #F8FAFC;
+    --color-surface-hover: #F1F5F9;
+
+    /* Text Roles - Light */
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94A3B8;
+    --color-text-inverse: #FFFFFF;
+
+    /* Borders & Hairlines - Light */
+    --color-border: #E2E8F0;
+    --color-border-light: #F1F5F9;
+    --color-border-dark: #CBD5E1;
+    --color-border-hairline: rgba(15, 23, 42, 0.08);
+
+    /* Precision Cobalt Accent - Light */
+    --color-electric: #0066FF;
+    --color-electric-light: #3B82F6;
+    --color-electric-dark: #0052CC;
+    --color-electric-subtle: rgba(0, 102, 255, 0.08);
+
+    /* Semantic Status - Light */
+    --color-success: #16A36A;
+    --color-success-light: #F0FDF4;
+    --color-success-dark: #166534;
+    --color-success-border: #BBF7D0;
+
+    --color-warning: #D97706;
+    --color-warning-light: #FFFBEB;
+    --color-warning-dark: #92400E;
+    --color-warning-border: #FDE68A;
+
+    --color-danger: #DC2626;
+    --color-danger-light: #FEF2F2;
+    --color-danger-dark: #991B1B;
+    --color-danger-border: #FECACA;
+
+    --color-info: #0284C7;
+    --color-info-light: #F0F9FF;
+    --color-info-dark: #075985;
+    --color-info-border: #BAE6FD;
+
+    /* Scrollbars - Light */
+    --scrollbar-track: #F8FAFC;
+    --scrollbar-thumb: #CBD5E1;
+    --scrollbar-thumb-hover: #94A3B8;
+  }
+
+  .dark {
+    /* Ink & Slate Neutral Ramp - Dark */
+    --color-midnight: #F1F5F9;
+    --color-midnight-50: #1E293B;
+    --color-midnight-100: #151F32;
+    --color-midnight-900: #F8FAFC;
+
+    /* Functional Surfaces & Backgrounds - Dark (Official RetainIQ Dark Palette) */
+    --color-bg: #0B1120;
+    --color-bg-alt: #111827;
+    --color-bg-subtle: #0B1120;
+
+    --color-surface: #151F32;
+    --color-surface-muted: #1E293B;
+    --color-surface-card: #151F32;
+    --color-surface-raised: #1E293B;
+    --color-surface-hover: #243048;
+
+    /* Text Roles - Dark */
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #A7B3C5;
+    --color-text-muted: #64748B;
+    --color-text-inverse: #0B1120;
+
+    /* Borders & Hairlines - Dark */
+    --color-border: #334155;
+    --color-border-light: #1E293B;
+    --color-border-dark: #475569;
+    --color-border-hairline: rgba(255, 255, 255, 0.08);
+
+    /* Precision Azure Accent - Dark */
+    --color-electric: #4C8DFF;
+    --color-electric-light: #60A5FA;
+    --color-electric-dark: #3B82F6;
+    --color-electric-subtle: rgba(76, 141, 255, 0.15);
+
+    /* Semantic Status - Dark (Accessible Contrast) */
+    --color-success: #10B981;
+    --color-success-light: rgba(16, 185, 129, 0.15);
+    --color-success-dark: #059669;
+    --color-success-border: rgba(16, 185, 129, 0.35);
+
+    --color-warning: #F59E0B;
+    --color-warning-light: rgba(245, 158, 11, 0.15);
+    --color-warning-dark: #D97706;
+    --color-warning-border: rgba(245, 158, 11, 0.35);
+
+    --color-danger: #EF4444;
+    --color-danger-light: rgba(239, 68, 68, 0.15);
+    --color-danger-dark: #DC2626;
+    --color-danger-border: rgba(239, 68, 68, 0.35);
+
+    --color-info: #38BDF8;
+    --color-info-light: rgba(56, 189, 248, 0.15);
+    --color-info-dark: #0284C7;
+    --color-info-border: rgba(56, 189, 248, 0.35);
+
+    /* Scrollbars - Dark */
+    --scrollbar-track: #0B1120;
+    --scrollbar-thumb: #334155;
+    --scrollbar-thumb-hover: #475569;
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-body;
+    min-height: 100vh;
+  }
+
+  /* Accessible Precision Focus Indicators */
+  :focus-visible {
+    @apply outline-none ring-2 ring-electric ring-offset-2 ring-offset-surface;
+  }
+
+  /* Headings: weight 500-600 discipline */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary font-heading tracking-tight;
+  }
+
+  /* Form controls dark mode baseline */
+  .dark input:not([type="checkbox"]):not([type="radio"]),
+  .dark select,
+  .dark textarea {
+    background-color: #111827;
+    color: #F1F5F9;
+    border-color: #334155;
+  }
+
+  .dark input:not([type="checkbox"]):not([type="radio"]):focus,
+  .dark select:focus,
+  .dark textarea:focus {
+    border-color: #4C8DFF;
+    outline: none;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #64748B;
+  }
+}
+
+/* Utility classes for data density & statistical presentation */
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .border-hairline {
+    border-color: var(--color-border-hairline);
+  }
+}
+
+/* Dark mode semantic badge & status adaptions */
+.dark .bg-midnight {
+  background-color: #111827 !important;
+}
+.dark [class*="bg-midnight/"] {
+  background-color: rgba(17, 24, 39, 0.7) !important;
+}
+.dark .text-midnight {
+  color: #F1F5F9 !important;
+}
+
+.dark .bg-slate-50,
+.dark [class*="bg-slate-50"] {
+  background-color: #1E293B !important;
+}
+.dark .bg-slate-100,
+.dark [class*="bg-slate-100"] {
+  background-color: #1E293B !important;
+}
+.dark .bg-slate-200,
+.dark [class*="bg-slate-200"] {
+  background-color: #334155 !important;
+}
+.dark .bg-white,
+.dark [class*="bg-white"] {
+  background-color: #151F32 !important;
+}
+.dark [class*="bg-surface/"] {
+  background-color: #151F32 !important;
+}
+
+.dark tr:hover,
+.dark tr[class*="hover:bg-slate-50"]:hover,
+.dark [class*="hover:bg-slate-50"]:hover {
+  background-color: #243048 !important;
+}
+
+.dark .border-slate-200,
+.dark [class*="border-slate-200"] {
+  border-color: #334155 !important;
+}
+.dark .border-slate-300,
+.dark [class*="border-slate-300"] {
+  border-color: #475569 !important;
+}
+.dark .border-slate-700 {
+  border-color: #334155 !important;
+}
+
+.dark .text-slate-950,
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: #F1F5F9 !important;
+}
+.dark .text-slate-700,
+.dark .text-slate-600 {
+  color: #A7B3C5 !important;
+}
+.dark .text-slate-500,
+.dark .text-slate-400 {
+  color: #94A3B8 !important;
+}
+.dark .text-slate-300 {
+  color: #CBD5E1 !important;
+}
+
+/* Dark mode semantic badge fills and contrasting text */
+.dark .bg-emerald-50,
+.dark [class*="bg-emerald-50"],
+.dark .bg-emerald-100,
+.dark [class*="bg-emerald-100"] {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #34D399 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.dark .text-emerald-950,
+.dark .text-emerald-900,
+.dark .text-emerald-800 {
+  color: #6EE7B7 !important;
+}
+
+.dark .bg-amber-50,
+.dark [class*="bg-amber-50"],
+.dark .bg-amber-100,
+.dark [class*="bg-amber-100"] {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #FBBF24 !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+.dark .text-amber-950,
+.dark .text-amber-900,
+.dark .text-amber-800 {
+  color: #FCD34D !important;
+}
+
+.dark .bg-rose-50,
+.dark [class*="bg-rose-50"],
+.dark .bg-red-50,
+.dark [class*="bg-red-50"],
+.dark .bg-red-100,
+.dark [class*="bg-red-100"] {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #F87171 !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+.dark .text-red-950,
+.dark .text-red-900,
+.dark .text-red-800,
+.dark .text-rose-900 {
+  color: #FCA5A5 !important;
+}
+
+.dark .bg-blue-50,
+.dark [class*="bg-blue-50"],
+.dark .bg-sky-50,
+.dark [class*="bg-sky-50"],
+.dark .bg-blue-100,
+.dark [class*="bg-blue-100"] {
+  background-color: rgba(76, 141, 255, 0.15) !important;
+  color: #93C5FD !important;
+  border-color: rgba(76, 141, 255, 0.3) !important;
+}
+.dark .text-blue-950,
+.dark .text-blue-900,
+.dark .text-blue-800,
+.dark .text-cyan-900 {
+  color: #93C5FD !important;
+}
+
+.dark [class*="bg-slate-900/"] {
+  background-color: rgba(2, 6, 23, 0.75) !important;
+}
+
+/* Reduced-motion accessibility overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Quiet neutral scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

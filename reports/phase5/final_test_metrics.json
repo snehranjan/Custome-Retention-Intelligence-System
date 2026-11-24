@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "title": "Phase 5 Checkpoint 5 Final Test Set Evaluation Metrics",
+    "model_id": "logistic_regression_config_b_tuned_refitted",
+    "algorithm": "Logistic Regression",
+    "feature_configuration": "B",
+    "feature_count": 37,
+    "refit_training_records": 5950,
+    "test_records": 1050,
+    "decision_threshold": 0.46
+  },
+  "test_metrics": {
+    "accuracy": 0.6695,
+    "precision": 0.6151,
+    "recall": 0.7443,
+    "f1_score": 0.6736,
+    "roc_auc": 0.7491,
+    "average_precision": 0.7146,
+    "specificity": 0.6063,
+    "balanced_accuracy": 0.6753,
+    "false_positive_rate": 0.3937,
+    "false_negative_rate": 0.2557,
+    "brier_score_loss": 0.2038
+  },
+  "confusion_matrix": {
+    "true_positives": 358,
+    "false_positives": 224,
+    "true_negatives": 345,
+    "false_negatives": 123,
+    "total": 1050
+  },
+  "recall_constraint_satisfied": true
+}

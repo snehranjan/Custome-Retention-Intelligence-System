@@ -1,0 +1,50 @@
+{
+  "evaluation_milestone": "Phase 5.1 Checkpoint 4",
+  "evaluation_timestamp": "2026-11-19T16:53:15.074184",
+  "dataset": "Phase 5.1 Independent Synthetic Test Cohort (customers_independent.csv)",
+  "sample_size": 1500,
+  "locked_decision_threshold": 0.5,
+  "model_id": "random_forest_config_d",
+  "model_sha256": "24F1F0E33C75B5590906369960DB6E5951EC95DF9AE40384DA60082B3438F301",
+  "metrics": {
+    "accuracy": 0.6893333333333334,
+    "precision": 0.6421636615811374,
+    "recall": 0.6900149031296572,
+    "specificity": 0.6887816646562123,
+    "balanced_accuracy": 0.6893982838929347,
+    "f1_score": 0.6652298850574713,
+    "roc_auc": 0.7651112161780753,
+    "average_precision": 0.7307694661429807,
+    "false_positive_rate": 0.3112183353437877,
+    "false_negative_rate": 0.30998509687034276,
+    "brier_score": 0.19699404407301
+  },
+  "class_distributions": {
+    "actual_retained_0": 829,
+    "actual_churned_1": 671,
+    "actual_churn_rate": 0.44733333333333336,
+    "predicted_retained_0": 779,
+    "predicted_churned_1": 721,
+    "predicted_churn_rate": 0.4806666666666667
+  },
+  "confusion_matrix": {
+    "true_negatives": 571,
+    "false_positives": 258,
+    "false_negatives": 208,
+    "true_positives": 463
+  },
+  "development_cv_comparison": {
+    "cv_mean_accuracy": 0.713445,
+    "independent_accuracy": 0.6893333333333334,
+    "accuracy_delta": -0.024111666666666642,
+    "cv_mean_recall": 0.710203,
+    "independent_recall": 0.6900149031296572,
+    "recall_delta": -0.020188096870342842,
+    "cv_mean_f1": 0.694398,
+    "independent_f1": 0.6652298850574713,
+    "f1_delta": -0.02916811494252869,
+    "cv_mean_roc_auc": 0.779817,
+    "independent_roc_auc": 0.7651112161780753,
+    "roc_auc_delta": -0.014705783821924667
+  }
+}

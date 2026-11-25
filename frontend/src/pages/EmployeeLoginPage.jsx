@@ -572,7 +572,7 @@ export function EmployeeLoginPage({ onNavigate }) {
                       {verificationError || "The frontend client was unable to contact the RetainIQ backend API service."}
                     </p>
                     <p className="text-rose-700 font-mono text-[10.5px]">
-                      Target API: {(import.meta.env.VITE_API_BASE_URL || "http://localhost:8000")}
+                      Target API: {(import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000")}
                     </p>
                   </div>
                 ) : (

@@ -44,6 +44,8 @@ class Settings(BaseSettings):
         "http://127.0.0.1:5173",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "https://retainiq-77c6be.netlify.app",
+        "https://retainiq-retention-system.netlify.app",
     ]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
@@ -58,6 +60,8 @@ class Settings(BaseSettings):
             "http://127.0.0.1:5173",
             "http://localhost:3000",
             "http://127.0.0.1:3000",
+            "https://retainiq-77c6be.netlify.app",
+            "https://retainiq-retention-system.netlify.app",
         ]
 
     # Database & Supabase Configuration (Phase 7.4)

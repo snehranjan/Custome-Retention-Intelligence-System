@@ -165,10 +165,16 @@ export function EmployeeLoginPage({ onNavigate }) {
           // Not an administrator, check employee registry clearance
           checkEmployeeClearance(isMountedRef);
         })
-        .catch(() => {
-          // If 403 or error from admin endpoint, check employee clearance
+        .catch((err) => {
           if (!isMountedRef.current) return;
-          checkEmployeeClearance(isMountedRef);
+          // Only check employee clearance if explicitly forbidden (403: user is authenticated but not an admin)
+          if (err?.status === 403 || err?.isForbiddenError) {
+            checkEmployeeClearance(isMountedRef);
+          } else {
+            // Network connection failure (status 0), server error (500), or auth token rejection (401)
+            setVerificationStatus("failed");
+            setVerificationError(err?.message || "Failed to contact backend authorization service.");
+          }
         });
     } else {
       setVerificationStatus("idle");
@@ -554,6 +560,19 @@ export function EmployeeLoginPage({ onNavigate }) {
                     </div>
                     <p className="text-slate-600 leading-relaxed text-[11.5px]">
                       This employee account has been temporarily suspended by an administrator.
+                    </p>
+                  </div>
+                ) : verificationStatus === "failed" ? (
+                  <div className="p-4 rounded-lg bg-rose-50/80 border border-rose-200 text-rose-950 text-xs space-y-2">
+                    <div className="flex items-center gap-2 font-heading font-semibold text-xs text-rose-950">
+                      <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                      <span>Backend Authorization Service Unreachable</span>
+                    </div>
+                    <p className="text-rose-800 leading-relaxed text-[11.5px]">
+                      {verificationError || "The frontend client was unable to contact the RetainIQ backend API service."}
+                    </p>
+                    <p className="text-rose-700 font-mono text-[10.5px]">
+                      Target API: {(import.meta.env.VITE_API_BASE_URL || "http://localhost:8000")}
                     </p>
                   </div>
                 ) : (
